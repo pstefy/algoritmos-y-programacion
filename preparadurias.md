@@ -636,7 +636,12 @@ print('El resultado es: ', contador)
 2
 3
 4
-El resultado es:  10
+5
+6
+7
+8
+9
+El resultado es:  45
 ```
 Podemos indicarle a **range()** el inicio del rango:
 
