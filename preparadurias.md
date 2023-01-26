@@ -63,6 +63,25 @@
     - [Ejercicio 25 (Tarea)](#ejercicio-25-tarea)
     - [Ejercicio 26](#ejercicio-26)
     - [Ejercicio 27 (Tarea)](#ejercicio-27-tarea)
+- [Preparaduría 3](#preparaduría-3)
+  - [GitHub Classroom (Entregas)](#github-classroom-entregas)
+    - [Comandos](#comandos)
+  - [Tuplas](#tuplas)
+    - [Caracteristicas de las tuplas](#caracteristicas-de-las-tuplas)
+    - [Metodos de tuplas](#metodos-de-tuplas)
+  - [Sets](#sets)
+    - [Caracteristicas de los sets](#caracteristicas-de-los-sets)
+    - [Metodos de sets](#metodos-de-sets)
+  - [Diccionarios](#diccionarios)
+    - [Caracteristicas de los diccionarios](#caracteristicas-de-los-diccionarios)
+    - [Metodos de diccionarios](#metodos-de-diccionarios)
+  - [Ejercicios](#ejercicios-2)
+    - [Ejercicio 37](#ejercicio-37)
+    - [Ejercicio 38](#ejercicio-38)
+    - [Ejercicio 45 (Tarea)](#ejercicio-45-tarea)
+    - [Ejercicio 46](#ejercicio-46)
+    - [Ejercicio 47 (Tarea)](#ejercicio-47-tarea)
+    - [Ejercicio 48](#ejercicio-48)
 
 # Introducción a la materia
 
@@ -863,4 +882,464 @@ El programa debera imprimir *dos matrices resultantes*, una correspondiente a ca
 Realice un algoritmo que dado un **número** ingresado por el usuario realice la operación de *multiplicación por la matriz A* del ejercicio anterior. El programa deberá
 mostrar como respuesta la *matriz resultante* de la misma.
 
+
+# Preparaduría 3
+
+## GitHub Classroom (Entregas)
+
+Recuerden que deben tener instalado Git y estar registrados en GitHub.
+
+**Para instalar Git:** 
+*Video Tutorial*
+https://www.youtube.com/watch?v=MAHkItbZD5c&ab_channel=Developeando
+
+*Pagina oficial de Git*
+https://git-scm.com/book/es/v2/Inicio---Sobre-el-Control-de-Versiones-Instalaci%C3%B3n-de-Git
+
+**Para registrarse en GitHub:** https://github.com/
+
+### Comandos
+
+- git init
+- git add *
+- git commit -m "first commit"
+- git branch -M main
+- git remote add origin https://github.com/Algorimtos-y-Programacion-2223-2/ejercicio-github-pstefy.git
+- git push -u origin main
+
+## Tuplas
+Al igual que las listas, las tuplas nos permiten almacenar varios elementos en una misma variable, pero se deben crear usando **parentesis**.
+
+**Input**
+```python
+tuplaDeMaterias = ("Fisica 1", "Algoritmos", "Introduccion a la Ingenieria")
+print(tuplaDeMaterias)
+```
+
+**Output**
+```shell
+('Fisica 1', 'Algoritmos', 'Introduccion a la Ingenieria')
+```
+
+Tambien  podemos crear una tupla usando el constructor **tuple()**:
+
+```python
+tuplaDeMaterias = tuple(("Fisica 1", "Algoritmos", "Introduccion a la Ingenieria"))
+print(tuplaDeMaterias)
+print(tuplaDeMaterias[1]) #Algoritmos
+print(tuplaDeMaterias[-1]) #Introduccion a la Ingenieria
+```
+
+Podemos generar otra tupla con un **rango de indices** indicando dónde comenzar y dónde terminar. El valor devuelto será una *nueva tupla* con los elementos especificados.
+
+**Input**
+```python
+tuplaDeMaterias = ("Fisica 1", "Algoritmos", "Introduccion a la Ingenieria", "Quimica general", "Italiano 1") # Indices: 0 1 2 3 4
+print(tuplaDeMaterias[1:4]) # 1 2 3
+print(tuplaDeMaterias[:4]) # 0 1 2 3
+print(tuplaDeMaterias[-3:-1]) # -3 -2
+```
+
+**Output**
+```shell
+('Algoritmos', 'Introduccion a la Ingenieria', 'Quimica general')
+('Fisica 1', 'Algoritmos', 'Introduccion a la Ingenieria', 'Quimica general')
+('Introduccion a la Ingenieria', 'Quimica general')
+```
+
+Podemos usar **in** para saber si un elemento esta en la tupla.
+
+```python
+tuplaDeMaterias = ("Fisica 1", "Algoritmos", "Introduccion a la Ingenieria", "Quimica general", "Italiano 1") # Indices: 0 1 2 3 4
+if "Aleman 1" in tuplaDeMaterias:
+  print("Aleman 1 forma parte de las materia inscritas.")
+else:
+  print("Aleman 1 no forma parte de las materia inscritas.")
+```
+
+Como las tuplas son estructuras inmutables no se puede agregar, eliminar ni modificar elementos. Sin embargo, podriamos convertir la tupla en una lista y hacer las modificaciones con una lista:
+
+**Input**
+```python
+tuplaDeMaterias = ("Fisica 1", "Algoritmos", "Introduccion a la Ingenieria", "Quimica general", "Italiano 1") # Indices: 0 1 2 3 4
+listaDeMaterias = list(tuplaDeMaterias)
+listaDeMaterias.append("Aleman 1")
+tuplaDeMaterias = tuple(listaDeMaterias)
+print(tuplaDeMaterias)
+```
+
+**Output**
+```shell
+('Fisica 1', 'Algoritmos', 'Introduccion a la Ingenieria', 'Quimica general', 'Italiano 1', 'Aleman 1')
+```
+
+Podemos "desempaquetar" los valores de la tupla ya sea en variables o en listas.
+
+**Input**
+```python
+tuplaDeMaterias = ("Fisica 1", "Algoritmos", "Introduccion a la Ingenieria", "Quimica general", "Italiano 1") # Indices: 0 1 2 3 4
+(fisica, sistemas, *otrasMaterias) = tuplaDeMaterias
+print(fisica) #Elemento
+print(sistemas) #Elemento
+print(otrasMaterias) #Lista de elementos
+```
+
+**Output**
+```shell
+Fisica 1
+Algoritmos
+['Introduccion a la Ingenieria', 'Quimica general', 'Italiano 1']
+```
+
+Tambien podemos sumar o clonar tuplas:
+
+**Input**
+```python
+tuplaDeNumeros = (1, 2, 3)
+tuplaDeNumerosClonados = tuplaDeNumeros*2
+tuplaNumeroX = (4, 4)
+tuplaSuma = tuplaDeNumeros + tuplaNumeroX
+print(tuplaDeNumerosClonados)
+print(tuplaSuma)
+```
+
+**Output**
+```shell
+(1, 2, 3, 1, 2, 3)
+(1, 2, 3, 4, 4)
+```
+
+### Caracteristicas de las tuplas
+- Las tuplas permiten valores repetidos.
+- Los elementos de la tupla están ordenados (los elementos tienen un orden definido y ese orden no cambiará.).
+- Los elementos de la tupla son inmutables (no podemos cambiar, agregar o eliminar elementos una vez la tupla sea creada).
+- Los elementos de la tupla están indexados, esto quiere decir que el primer elemento tiene índice [0], el segundo elemento tiene índice [1]...
+- Los elementos de la tupla pueden ser de cualquier tipo de dato.
+
+### Metodos de tuplas
+
+| Metodo      | Explicacion                                                                           |
+| ----------- | ------------------------------------------------------------------------------------- |
+| len()       | Indica el tamaño de la tupla                                                          |
+| count()     | Indica el numero de elementos en la tupla con el valor indicado                       |
+| index()     | Devuelve el índice del primer elemento con el valor especificado                      |
+
+Si quieren investigar un poco mas sobre estos metodos: 
+['Tuple Methods'](https://www.w3schools.com/python/python_tuples_methods.asp)
+
+## Sets
+Al igual que las listas y las tuplas nos permiten almacenar varios elementos en una misma variable, pero se deben crear usando **llaves**.
+
+**Input**
+```python
+setDeNumeros = {1, 2, 3, 4}
+print(setDeNumeros)
+```
+
+**Output**
+```shell
+{1, 2, 3, 4}
+```
+
+Tambien  podemos crear un set usando el constructor **set()**:
+
+```python
+setDeNumeros = set((1, 2, 3, 4))
+print(setDeNumeros)
+```
+
+Podemos usar **in** para saber si un elemento esta en el set.
+
+```python
+setDeNumeros = {1, 2, 3, 4, 5} # Indices: 0 1 2 3 4
+if 4 in setDeNumeros:
+  print("4 forma parte del conjunto.")
+else:
+  print("4 no forma parte del conjunto.")
+```
+
+Como los sets son estructuras "inmutables" no permite modificar elementos, pero si se puedem agregar o eliminar elementos.
+
+**Input**
+```python
+setDeNumeros = {1, 2, 3, 4, 5}
+setDeNumeros2 = {7, 8, 9}
+setDeNumeros.add(6) #Agregar un elemento
+setDeNumeros.update(setDeNumeros2) #Agregar set, tupla o lista
+setDeNumeros.discard(3) #Eliminar un valor especifico
+# Podriamos usar setDeNumeros.pop() pero .pop() elimina un valor aleatorio del set
+print(setDeNumeros)
+```
+
+**Output**
+```shell
+{1, 2, 4, 5, 6, 7, 8, 9}
+```
+
+### Caracteristicas de los sets
+- Los sets NO permiten valores repetidos. En caso de crear un set con valores duplicados, los mismos seran ignorados.
+- Los elementos del set están desordenados (los elementos de un conjunto no tienen un orden definido).
+- Los elementos del set son "inmutables" (no podemos modificar los elementos una vez el set sea creado, pero si podemos agregar o eliminar).
+- Los elementos del set no están indexados, esto quiere decir que no se puede hacer referencia a sus elementos por índice.
+- Los elementos del set pueden ser de cualquier tipo de dato.
+
+### Metodos de sets
+
+| Metodo                       | Explicacion                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------- |
+| len()                        | Indica el tamaño del set                                                              |
+| add()                        | Agrega un elemento al set                                                             |
+| clear()                      | Vacia el set (elimina todos los elementos)                                            |
+| copy()                       | Crea una copia del set                                                                |
+| difference()                 | Devuelve un set con los elementos diferentes entre dos o mas sets                     |
+| difference_update()          | Elimina los elementos del set actual que existan otro set especificado                |
+| discard()                    | Elimina el elemento con el valor indicado                                             |
+| intersection()               | Devuelve un set con los elementos comunes entre otros dos sets                        |
+| intersection_update()        | Elimina los elementos del set actual que no esten en uno mas sets indicados           |
+| isdisjoint()                 | Es verdadero si ningun elemento del set esta en otro set especificado                 |
+| issubset()                   | Es verdadero si todos los elementos del set tambien estan en otro set especificado    |
+| issuperset()                 | Es verdadero si este set contiene todos los elementos de otro set especificado        |
+| pop()                        | Elimina un elemento aleatorio del set                                                 |
+| remove()                     | Elimina el elemento indicado del set                                                  |
+| symmetric_difference()       | Devuelve un set con todos los elementos no comunes entre ambos sets                   |
+| symmetric_difference_update()| Elimina los elementos en comun de ambos sets y agrega los que no posee el primer set  |
+| union()                      | Retorna un set con la union de dos sets especificados                                 |
+| update()                     | Actualiza el set con la union de otros sets, listas o tuplas                          |
+
+Si quieren investigar un poco mas sobre estos metodos: 
+['Set Methods'](https://www.w3schools.com/python/python_sets_methods.asp)
+
+## Diccionarios
+Los diccionarios tambien nos permiten almacenar informacion, la diferencia es que almacena la informacion en pares de clave y valor. Se deben crear usando **llaves**.
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+print(error)
+```
+
+**Output**
+```shell
+{'tipo': 'Input', 'mensaje': 'El usuario ingreso un valor erroneo', 'frecuencia': 1000}
+```
+
+Tambien  podemos crear un diccionario usando el constructor **dict()**:
+
+```python
+diccionarioError = dict(tipo = 'Input', mensaje = 'El usuario ingreso un valor erroneo', frecuencia = 1000)
+print(diccionarioError)
+```
+
+Podemos acceder a los **elementos** mediante sus **claves**.
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+print(diccionarioError["mensaje"])
+print(diccionarioError.get("frecuencia"))
+```
+
+**Output**
+```shell
+El usuario ingreso un valor erroneo
+1000
+```
+
+Podemos usar **keys()** para obtener una lista de todas las claves del diccionario.
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+print(diccionarioError.keys())
+```
+
+**Output**
+```shell
+dict_keys(['tipo', 'mensaje', 'frecuencia'])
+```
+
+Podemos usar **values()** para obtener una lista de todos los valores del diccionario.
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+print(diccionarioError.values())
+```
+
+**Output**
+```shell
+dict_values(['Input', 'El usuario ingreso un valor erroneo', 1000])
+```
+
+Podemos usar **items()** para obtener todos los elementos del diccionario (como una lista de tuplas):
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+print(diccionarioError.items())
+```
+
+**Output**
+```shell
+dict_items([('tipo', 'Input'), ('mensaje', 'El usuario ingreso un valor erroneo'), ('frecuencia', 1000)])
+```
+
+Podemos usar **in** para saber si una clave existe en el diccionario:
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+if "intentos" in diccionarioError:
+  print("'intentos' es una clave del diccionario")
+else:
+  print("'intentos' no es una clave del diccionario")
+```
+
+**Output**
+```shell
+'intentos' no es una clave del diccionario
+```
+
+Tambien podemos actualizar los valores del diccionario:
+
+**Input**
+```python
+diccionarioError = {
+  "tipo": "Input",
+  "mensaje": "El usuario ingreso un valor erroneo",
+  "frecuencia": 1000,
+}
+diccionarioError["frecuencia"] += 1 #Modifica
+diccionarioError.update({ "indice": 0, "mensaje": "El usuario..." }) #Modifica 'mensaje' y agrega 'indice'
+diccionarioError["x"] = "y" #Agrega porque no existe la clave 'x'
+diccionarioError.pop("tipo") #Elimina 'tipo'
+print(diccionarioError)
+```
+
+**Output**
+```shell
+{'mensaje': 'El usuario...', 'frecuencia': 1001, 'indice': 0, 'x': 'y'}
+```
+
+Lo comun es usar **diccionarios de diccionarios**:
+
+**Input**
+```python
+alumnos = {
+  "alumno_1": {
+    "indice" : 0,
+    "nombre" : "Andres",
+    "nota" : 20
+  },
+  "alumno_2": {
+    "indice" : 1,
+    "nombre" : "Rommel",
+    "nota" : 19
+  },
+  "alumno_3": {
+    "indice" : 2,
+    "nombre" : "Camila",
+    "nota" : 15
+  }
+}
+print(alumnos)
+```
+
+**Output**
+```shell
+{'alumno_1': {'indice': 0, 'nombre': 'Andres', 'nota': 20}, 'alumno_2': {'indice': 1, 'nombre': 'Rommel', 'nota': 19}, 'alumno_3': {'indice': 2, 'nombre': 'Camila', 'nota': 15}}
+```
+
+### Caracteristicas de los diccionarios
+- Los diccionarios NO permiten tener elementos con la misma clave.
+- Los elementos del diccionario están ordenados (los elementos tienen un orden definido y ese orden no cambiará.).
+- Los elementos del diccionario son modificables (podemos cambiar, agregar o eliminar elementos).
+- ¿Los elementos del diccionario están indexados?, depende de la versiond de python. Para las prepas se asumira que no.
+- Los elementos del diccionario se presentan en pares clave:valor.
+- Los elementos del diccionario pueden ser de cualquier tipo de dato.
+
+### Metodos de diccionarios
+
+| Metodo      | Explicacion                                                                           |
+| ----------- | ------------------------------------------------------------------------------------- |
+| len()       | Devuelve el tamaño del diccionario                                                    |
+| clear()     | Vacia el diccionario                                                                  |
+| copy()      | Crea una copia del diccionario                                                        |
+| get()       | Devuelve el valor de la clave especificada                                            |
+| items()     | Devuelve una lista con una tupla por cada par clave: valor                            |
+| keys()      | Devuelve una lista de todas las llaves                                                |
+| values()    | Devuelve una lista de todos los valores                                               |
+| pop()       | Elimina el elemento con la clave especificada                                         |
+| update()    | Actualiza el diccionario con los pares clave-valor especificados                      |
+
+Si quieren investigar un poco mas sobre estos metodos: 
+['Dictionary Methods'](https://www.w3schools.com/python/python_dictionaries_methods.asp)
+
+## Ejercicios
+
+### Ejercicio 37
+Se realizara el **Cusica Fest 2023** y se venderan las entradas para dos dias diferentes. Sin embargo, el sistema guarda al cliente en dos sets diferentes dependiendo el dia. Por ello, los que estan vendiendo los tickets necesitan saber que personas iran ambos dias para darles un regalo,  y quienes solo iran un dia para mandarles publicidad. Se exige el uso de sets. 
+
+El primer dia van a ir: Luis, Laura, Andres, Jose, Andrea, Maria, Carlos
+El segundo dia van a ir: Rommel, Milena, Antonio, Andres, Andrea, Sofia
+
+### Ejercicio 38
+Se requiere que realice un programa que cuente las **vocales** de un texto. Se exige el uso de sets. 
+
+### Ejercicio 45 (Tarea)
+
+Escribir un programa que pregunte al usuario su *nombre*, *apellido*, *edad*, *dirección* y *teléfono* (debe guardar esta informacion en un **diccionario**). Después imprimir por pantalla:
+
+**Output**
+```shell
+El ciudadano (nombre) (apellido) de edad (edad), vive en (direccion) y se puede omunicar con el mediante su numero de telefono (telefono).
+```
+
+### Ejercicio 46
+
+Se requiere que realice un programa que valide que un texto tenga **todas las vocales**. Se exige el uso de sets y diccionarios. Debe indicar que vocales faltan en caso de ocurrir.
+
+### Ejercicio 47 (Tarea)
+
+Debe realizar un programa de administracion de estudiantes, donde si el usuario lo desea debe agregar, eliminar o modificar un estudiante. Los datos del estudiante deben ser: nombre, apellido, telefono, correo, carnet, cedula, materias inscritas.
+
+Debe tener un set con las materias que se pueden inscribir.
+
+Tenga en cuenta que las cedulas y los carnet deben ser unicos.
+
+Toda esta informacion debe estar en un diccionario de usuarios inscritos.
+
+**Bonus:** Intente tener en cuenta tambien la nota de cada materia par cada estudiante.
+
+### Ejercicio 48
+
+Crear un programa que reciba una **lista de tuplas**, y que devuelva un diccionario en donde las claves sean los primeros elementos de las tuplas, y los valores una lista con los segundos elementos.
+
+```python
+listaDeTuplas = [("Hola", "Mundo"),("Buenos", "Dias"),("Hasta", "Luego"),("Nos","Vemos")]
+```
 
