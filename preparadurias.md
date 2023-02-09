@@ -82,6 +82,30 @@
     - [Ejercicio 46](#ejercicio-46)
     - [Ejercicio 47 (Tarea)](#ejercicio-47-tarea)
     - [Ejercicio 48](#ejercicio-48)
+- [Preparaduría 4](#preparaduría-4)
+  - [Try Except](#try-except)
+  - [List Comprehension](#list-comprehension)
+  - [Estructuras Combinadas](#estructuras-combinadas)
+    - [Lista](#lista)
+    - [Tupla](#tupla)
+    - [Set](#set)
+    - [Diccionario](#diccionario)
+    - [Tips](#tips)
+    - [Ejemplo 1](#ejemplo-1)
+    - [Ejemplo 2](#ejemplo-2)
+  - [Modularidad](#modularidad)
+    - [Funciones](#funciones-1)
+    - [Parametros y Argumentos](#parametros-y-argumentos)
+    - [Retornar](#retornar)
+    - [Comentarios Docstring](#comentarios-docstring)
+    - [Imports](#imports)
+    - [Funcion lambda](#funcion-lambda)
+    - [Recursividad](#recursividad)
+  - [Ejercicios](#ejercicios-3)
+    - [Ejercicio 52](#ejercicio-52)
+    - [Ejercicio 54](#ejercicio-54)
+    - [Ejercicio 4.3](#ejercicio-43)
+    - [Ejercicio 4.4](#ejercicio-44)
 
 # Introducción a la materia
 
@@ -1343,3 +1367,512 @@ Crear un programa que reciba una **lista de tuplas**, y que devuelva un dicciona
 listaDeTuplas = [("Hola", "Mundo"),("Buenos", "Dias"),("Hasta", "Luego"),("Nos","Vemos")]
 ```
 
+# Preparaduría 4
+
+## Try Except
+Con **Try Except** podemos **seguir ejecutando el programa** aun si el bloque de codigo presenta un error.
+
+**Input**
+```python
+try:
+  print(nombre)
+  print("Continua?") #No, porque sale del try en la linea donde ocurre un error
+except:
+  print("Ocurrio un error")
+
+print("Programa finalizado")
+```
+
+**Output**
+```shell
+Ocurrio un error
+Programa finalizado
+```
+
+Tambien podemos usar **else** (opcional) si queremos ejecutar un bloque de codigo en caso de que no ocurra ningun error, o podemos usar **finally** para ejecutar otro bloque de codigo sin importar si ocurrio o no un error
+
+**Input**
+```python
+try:
+  print(nombre)
+except:
+  print("Ocurrio un error")
+else:
+  print("Todo bien")
+finally:
+  print("No importa lo que paso")
+print("Programa finalizado")
+```
+
+**Output**
+```shell
+Ocurrio un error
+No importa lo que paso
+Programa finalizado
+```
+
+Es comun usar **try except** cuando tenemos que pedirle informacion al usuario y tenemos que validar si es correcta.
+
+```python
+num = ""
+while(not type(num) is int):
+    try:
+        num = int(input("Ingrese un entero: "))
+    except:
+        print("Por favor, ingrese un numero entero y no otra cosa.")
+print(num)
+```
+## List Comprehension
+
+*List Comprehension* nos permite crear una nueva lista a partir de otra de una forma mas corta.
+
+**Sin List Comprehension**
+```python
+lista1 = [1,2,3,4,5,3]
+lista2 = []
+
+for numero in lista1:
+  if numero == 3:
+    lista2.append(numero)
+
+print(lista2)
+```
+
+**Output**
+```shell
+[3, 3]
+```
+
+**Con List Comprehension**
+```python
+lista1 = [1,2,3,4,5,3]
+
+lista2 = [numero for numero in lista1 if numero == 3]
+
+print(lista2)
+```
+
+**Output**
+```shell
+[3, 3]
+```
+
+## Estructuras Combinadas
+
+### Lista
+```python
+lista = [1,2,3]
+for num in lista:
+    print(num)
+```
+
+### Tupla
+```python
+tupla = (1,2,3)
+for num in tupla:
+    print(num)
+```
+
+### Set
+```python
+conjunto = {1,2,3}
+for num in conjunto:
+    print(num)
+```
+
+### Diccionario
+```python
+diccionario = {
+    'num1': 1,
+    'num2': 2,
+    'num3': 3
+} 
+for llave in diccionario:
+    print(diccionario[llave])
+```
+
+### Tips
+- Recordar como se recorre cada estructura de datos (lista, tupla, set, diccionario).
+- Ir de la estructura externa a la interna poco a poco.
+- Es mas comodo usar for nombre_variable in nombre_estructura.
+- Si lo necesita puede ir imprimiendo nombre_variable para saber en que parte de la estructura esta.
+
+### Ejemplo 1
+```python
+diccionarioDeListas = {
+    'lista1': [1,2,3],
+    'lista2': [4,5,6],
+    'lista3': [7,8,9]
+} 
+for llave in diccionarioDeListas:
+    print(diccionarioDeListas[llave])
+    for numero in diccionarioDeListas[llave]:
+        print(numero)
+```
+
+**Output**
+```shell
+[1, 2, 3]
+1
+2
+3
+[4, 5, 6]
+4
+5
+6
+[7, 8, 9]
+7
+8
+9
+```
+
+### Ejemplo 2
+```python
+listaDeDiccionariosDeTuplas = [
+    {
+        'numeros1': (1,2,3),
+        'numeros2': ()
+    },
+    {
+        'numeros1': (4,5,6),
+        'numeros2': ()
+    },
+    {
+        'numeros1': (7,8,9),
+        'numeros2': ()
+    },
+]
+for diccionario in listaDeDiccionariosDeTuplas:
+    for llave in diccionario:
+        print(diccionario[llave])
+        for numero in diccionario[llave]:
+            print(numero)
+```
+
+**Output**
+```shell
+(1, 2, 3)
+1
+2
+3
+()
+(4, 5, 6)
+4
+5
+6
+()
+(7, 8, 9)
+7
+8
+9
+()
+```
+
+## Modularidad
+
+### Funciones
+
+Una función es un bloque de código que solo se ejecuta cuando se le llama. Las funciones pueden recibir datos (*parametros*) y tambien  pueden *retornar* datos como resultado de su llamada. Para crear una funcion debemos usar **def**:
+
+**Input**
+```python
+def imprimir(cadena):
+  print(cadena)
+
+imprimir("Holaa") #Llamada de la funcion enviandole un parametro string
+```
+
+**Output**
+```shell
+Holaa
+```
+
+### Parametros y Argumentos
+
+Las funciones pueden recibir **multiples parametros**, solo hay que separarlos por comas:
+
+**Input**
+```python
+def presentacion(nombre, apellido, numero):
+  print("Hola soy {} {}".format(nombre, apellido))
+
+presentacion("Isamar", 'Contreras', 25) #Llamada de la funcion enviandole dos parametros tipo string y uno tipo int
+```
+
+**Output**
+```shell
+Hola soy Isamar Contreras
+```
+
+Las variables con las que definimos la funcion se conocen como **parametros**, mientras que las variables que le pasamos a la funcion al llamarla se conocen como **argumentos**.
+
+**Input**
+```python
+def presentacion(nombre, apellido, numero): #Parametros
+  print("Hola soy {} {}".format(nombre, apellido))
+
+presentacion("Isamar", 'Contreras', 25) #Argumentos
+```
+
+Otra manera de pasar los argumentos es indicar el parametro que representa, y tambien podemos darle **valores por defecto** a los parametros (estos parametros con valor por defecto deben estar al final).
+
+**Input**
+```python
+def presentacion(nombre, numero, apellido = "Apellido"): #Parametros
+  print("Hola soy {} {}".format(nombre, apellido))
+
+presentacion(numero = 25, nombre = "Isamar") #Argumentos
+```
+
+Tambien si no sabemos cuantos argumentos son podemos decirle a la funcion que los datos que reciba los convierta en un **diccionario** agregando '**' al inicio de un parametro.
+
+**Input**
+```python
+def presentacion(**persona): #Parametro
+  print("Hola soy {} {}".format(persona['nombre'], persona['apellido']))
+
+presentacion(numero = 25, nombre = "Isamar", apellido = 'Contreras') #Argumentos
+```
+
+### Retornar
+
+Las funciones permiten ya sea ejecutar un bloque de codigo sin retornar nada (*solo realiza acciones*), o tambien pueden **retornar informacion** como resultado de la funcion usando **return**.
+
+**Input**
+```python
+def sumar(num1, num2):
+  return num1 + num2
+
+resultado = sumar(1, 5)
+print(resultado)
+```
+
+Tambien podemos **retornar mas de una variable** con la funcion, lo que hara que la funcion cree una **tupla** como resultado.
+
+**Input**
+```python
+def operaciones(num1, num2):
+  return num1 + num2, num1 - num2, num1 * num2, num1 / num2
+
+resultado = operaciones(1, 5)
+print(resultado)
+print(resultado[0])
+```
+
+**Output**
+```shell
+(6, -4, 5, 0.2)
+6
+```
+
+Deben notar que la funcion en el siguiente caso **no cambia la variable original**, por lo que podriamos usar return para que si la cambie:
+
+**Input 1**
+```python
+def presentacion(nombre): 
+  nombre = "Juan"
+
+nombre = 'Isamar'
+presentacion(nombre)
+print(nombre)
+```
+
+**Output 1**
+```shell
+Isamar
+```
+
+**Input 2**
+```python
+def presentacion(nombre): 
+  nombre = "Juan"
+  return nombre
+
+nombre = 'Isamar'
+nombre = presentacion(nombre)
+print(nombre)
+```
+
+**Output 2**
+```shell
+Juan
+```
+
+### Comentarios Docstring
+
+Los docstrings son comentarios multilinea linea que explican cómo se puede utilizar una determinada función o clase. Es importante documentar tu codigo para generar soluciones de calidad (ademas que si lo ves meses despues te aseguras de pdoer recordar que hacia dicha funcion o clase). 
+
+**Input**
+```python
+def presentacion(nombre): 
+  '''
+  Retorna el nombre Juan.
+
+            Parameters:
+                    nombre (str): Una cadena con un nombre
+
+            Returns:
+                    nombre (str): Cadena que contiene el nombre Juan
+  '''
+  nombre = "Juan"
+  return nombre
+
+print(presentacion.__doc__)
+```
+
+**Output**
+```shell
+  Retorna el nombre Juan.
+
+            Parameters:
+                    nombre (str): Una cadena con un nombre
+
+            Returns:
+                    nombre (str): Cadena que contiene el nombre Juan
+```
+
+
+### Imports
+
+En python podemos tener distintos modulos que podremos importar desde otros archivos. 
+
+Esto es de mucha utilidad a la hora de tener un codigo ordenado, ya que podriamos tener un archivo *funciones.py* con todas las funciones utilizadas en nuestro proyecto, un archivo *main.py* en donde se ejecutara el codigo principal (aqui podriamos usar las funciones mencionadas) y cualquier otro archivo.
+
+*Consultar:* funciones1.py, funciones2.py, datos.py y main.py.
+
+
+### Funcion lambda
+
+Una funcion **lambda** es lo que se conoce como una *pequeña funcion anonima*. Puede tener varios argumentos pero solo una expresion.
+
+```python
+sumar = lambda numero1, numero2 : numero1 + numero2
+print(sumar(5,8))
+```
+
+```shell
+13
+```
+
+Pueden ser utiles mas que todo dentro de una funcion:
+
+```python
+def funcion(numero1):
+  return lambda numero2 : numero2 * numero1
+
+duplicador = funcion(2)
+triplicador = funcion(3)
+
+print(duplicador(10))
+print(triplicador(10))
+```
+
+```shell
+20
+30
+```
+
+### Recursividad
+Decimos que una funcion es recursiva cuando esta se **llama a si misma** constantemente hasta que llega a un **punto de quiebre** en el cual deja de llamarse a si misma. Deben estar atentos al excribir funciones recursivas ya que es muy facil crear bucles infinitos.
+
+**Input**
+```python
+def imprimir(nombre): #Causara un bucle infinito ya que no deja de llamarse porque no hay un punto de quiebre
+  print(nombre)
+  imprimir(nombre)
+  return nombre
+
+nombre = imprimir(nombre)
+```
+
+**Output**
+```shell
+RecursionError: maximum recursion depth exceeded while calling a Python object
+```
+
+La forma correcta de una funcion recursiva podria ser:
+
+**Input**
+```python
+def numeros_menores(numero):
+  if(numero > 0): #Punto de quiebre
+    numero = numero - 1
+    print(numero)
+    numeros_menores(numero)
+
+numero = 10
+print("Los numeros menores a ", numero, " son:")
+numeros_menores(numero)
+```
+
+**Output**
+```shell
+Los numeros menores a  10  son:
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+```
+
+## Ejercicios
+
+### Ejercicio 52
+
+Le han dado una lista de k listas, cada una de las listas esta ordenada de manera ascendente. Combine las k listas en una sola lista ordenada y retorne dicha lista.
+
+```python
+listaDeListas = [[1,4,5],[1,3,4],[2,6]]
+```
+
+### Ejercicio 54
+Dada la lista students que es una lista de diccionario, calcule el promedio de notas de los estudiantes y determine cual es el estudiante con mayor nota dentro del grupo.
+
+```python
+student = [
+  {
+    "name": "Jose",
+    "grade": 16
+  },
+  {
+    "name": "Luis",
+    "grade": 17
+  },
+  {
+    "name": "Antonio",
+    "grade": 14
+  },
+  {
+    "name": "Gabrielle",
+    "grade": 12,
+  },
+  {
+    "name": "Alejandro",
+    "grade": 11,
+  }
+]
+```
+
+```shell
+El promedio de notas es: 14.0ptos
+El estudiante con mayor nota es Luis con 17ptos
+```
+
+### Ejercicio 4.3
+
+Debe crear un programa que calcule el **factorial** de un numero entero usando una **funcion recursiva**. Debe validar que el numero ingresado por el usuario sea entero.
+
+*Factorial:* El factorial de un entero positivo n se define como el producto de todos los números enteros positivos desde 1 hasta n.
+
+### Ejercicio 4.4
+
+Desarrolle un algoritmo que dada la siguiente lista de numeros la **ordene** con un **metodo recursivo**.
+
+```python
+lista = [6,3,9,2,8,1,4,7,5]
+```
