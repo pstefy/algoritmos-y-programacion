@@ -108,6 +108,7 @@
     - [Ejercicio 4.4](#ejercicio-44)
 - [Preparaduría 5](#preparaduría-5)
   - [Programacion Orientada a Objetos (POO)](#programacion-orientada-a-objetos-poo)
+    - [Abstraccion (Pilar de POO)](#abstraccion-pilar-de-poo)
     - [Clase](#clase)
       - [Crear una clase](#crear-una-clase)
     - [Objetos](#objetos)
@@ -118,8 +119,25 @@
     - [Modificar atributos](#modificar-atributos)
     - [Sobrecargar constructores](#sobrecargar-constructores)
     - [Programacion Orientada a Objetos (POO) vs Programación Estructurada (Secuencial)](#programacion-orientada-a-objetos-poo-vs-programación-estructurada-secuencial)
-    - [Herencia](#herencia)
-  - [UML](#uml)
+    - [Herencia (Pilar de POO)](#herencia-pilar-de-poo)
+      - [Clase principal](#clase-principal)
+      - [Clase secundaria](#clase-secundaria)
+    - [Polimorfismo (Pilar de POO)](#polimorfismo-pilar-de-poo)
+    - [Encapsulacion (Pilar de POO)](#encapsulacion-pilar-de-poo)
+  - [Lenguaje Unificado de Modelado (UML)](#lenguaje-unificado-de-modelado-uml)
+    - [Articulos](#articulos)
+    - [Videos](#videos)
+    - [Componentes del Diagrama de Clases](#componentes-del-diagrama-de-clases)
+    - [Modificadores de acceso](#modificadores-de-acceso)
+    - [Relaciones](#relaciones)
+    - [Multiplicidad](#multiplicidad)
+    - [Resumen](#resumen)
+  - [Ejercicios](#ejercicios-4)
+    - [Ejercicio 5.1](#ejercicio-51)
+    - [Ejercicio 5.2](#ejercicio-52-1)
+    - [Ejercicio 5.3](#ejercicio-53)
+    - [Ejercicio 5.4 (Tarea)](#ejercicio-54-tarea)
+    - [Ejercicio 5.5 (Tarea)](#ejercicio-55-tarea)
 
 # Introducción a la materia
 
@@ -1891,16 +1909,28 @@ Desarrolle un algoritmo que dada la siguiente lista de numeros la **ordene** con
 lista = [6,3,9,2,8,1,4,7,5]
 ```
 
+
+
 # Preparaduría 5
 
 ## Programacion Orientada a Objetos (POO)
 La programación orientada a objetos (POO) es un paradigma de programacion que organiza las funciones en entidades llamadas **objetos**. Estos objetos se crean a partir de **clases**, siendo asi cada objeto una instancia de la clase. 
 
-En resumen, se construyen objetos que almacenan datos y que contienen distintas funcionalidades. La POO nos permite reutilizar código mediante la **abstracción**. La *abstracción* es el proceso en el cual nos preguntamos qué *atributos* y *métodos* puede necesitar nuestra **clase**.
+En resumen, se construyen objetos que almacenan datos y que contienen distintas funcionalidades.
 
 Python es un lenguaje de programación orientado a objetos. Un objeto en Python es una colección de datos (atributos) y comportamientos (métodos), y esto... ¿a que se parece? Pues se parece a los tipos de datos en Python, tal como los strings que son una cadena de caracteres que a su vez tiene metodos como upper(), lower(), entre otros.
 
 [¿Qué es la programacion orientada a objetos?](https://www.youtube.com/watch?v=DlphYPc_HKk&ab_channel=EDteam)
+### Abstraccion (Pilar de POO)
+
+La POO nos permite reutilizar código mediante la **abstracción**. La *abstracción* es el proceso en el cual nos preguntamos qué *atributos* y *métodos* puede necesitar nuestra **clase**.
+
+La abstracción oculta al usuario final la funcionalidad interna de la aplicación. Un ejemplo de esto seria cómo sabemos usar nuestro teléfono, pero probablemente no sabemos exactamente lo que ocurre dentro de este cada vez que se abre una aplicación.
+
+Otro ejemplo seria Python, ya que podemos saber cómo usarlo para crear algoritmos, pero a su vez podemos no entender el funcionamiento interno de Python como tal.
+
+Aplicar lo mismo a nuestro código nos permite reunir todos los objetos de un problema y abstraer la funcionalidad estándar en clases.
+
 ### Clase
 
 Las clases son plantillas que contienen la estructura básica de un objeto: *atributos* y *métodos*. Cada objeto creado se basara en este *molde*.
@@ -1936,7 +1966,7 @@ Todas las clases tienen una función llamada __init__(), que siempre se ejecuta 
 Usaremos el parámetro **self** (referencia a la instancia actual de la clase) para poder acceder a los atributos que pertenecen a la clase. Podemos llamarlo de cualquier manera pero para efecto de las preparadurias usaremos **self** o **this**.
 
 ```python
-class Student():
+class Student:
   def __init__(self, nombre, apellido, carnet, cedula, materias, correo, telefono):
     self.nombre = nombre
     self.apellido = apellido
@@ -1958,7 +1988,7 @@ Para acceder a los atributos del objeto basta con colocar el nombre de la variab
 Los **métodos** en los objetos son *funciones* que pertenecen al objeto. Se crean tal como hemos creado las funciones anteriormente pero dentro de una clase para que sea considerado un metodo de la misma.
 
 ```python
-class Student():
+class Student:
   def __init__(self, nombre, apellido, carnet, cedula, materias, correo = "", telefono = ""):
       self.nombre = nombre
       self.apellido = apellido
@@ -2028,7 +2058,7 @@ Telefono: 0
 ```
 
 ### Sobrecargar constructores
-
+Por si les interesa:
 [Sobrecargar un constructor en Python](https://www.delftstack.com/es/howto/python/overload-constructors-in-python/)
 ### Programacion Orientada a Objetos (POO) vs Programación Estructurada (Secuencial)
 
@@ -2039,6 +2069,223 @@ Telefono: 0
 | Enfoque por objetos                                  | Enfoque por bloques de codigo                            |
 | Mas facil de depurar                                 | Mas dificil de depurar                                   |
 
-### Herencia
+### Herencia (Pilar de POO)
+La herencia nos permite definir una clase que hereda todos los métodos y los atributos de otra clase. La **clase principal** es la clase de la que se hereda, también llamada **clase base**. La **clase secundaria** es la clase que hereda de otra clase, también llamada **clase derivada**.
 
-## UML
+De esta forma, la herencia nos permite definir múltiples subclases a partir de una clase ya definida.
+
+El propósito principal es seguir el **principio "Don't repeat yourself" (DRY)**. Podemos reutilizar mucho código implementando todos los componentes compartidos en clases principales y secundarias.
+
+Se puede ver como el concepto de herencia genética en la vida real. Los hijos (subclases) son el resultado de la herencia de padres (superclases). Heredan todas las características físicas (atributos) y algunos comportamientos comunes (métodos).
+
+#### Clase principal
+Cualquier clase puede ser una clase principal porque se crea igual que como se indica antes.
+
+**Clase Padre**
+```python
+class Persona:
+  def __init__(self, nombre, apellido, carnet, cedula, materias, correo = "", telefono = ""):
+      self.nombre = nombre
+      self.apellido = apellido
+      self.cedula = cedula
+      self.correo = correo
+      self.telefono = telefono
+  
+  def imprimirDatos(this):
+      print("Persona: {} {} \nCedula: {} \nCorreo: {} \nTelefono: {}".format(this.nombre, this.apellido, this.cedula, this.correo, this.telefono))
+```
+
+#### Clase secundaria
+Para crear una clase que herede de otra clase, hay que enviar la clase principal como parámetro a la clase secundaria.
+
+Se debe tener en cuenta que al agregar la funcion __init__() a la clase secundaria, esta clase ya no hereda esa funcion __init__() de la clase padre. Si queremos que siga heredando el constructor pero a su vez queremos que la subclase tenga sus propios atributos, entonces tenemos que llamar a __init__() dentro del __init__() de la clase secundaria.
+
+**Clase Hijo**
+```python
+class Estudiante(Persona):
+  def __init__(self, nombre, apellido, cedula, correo = "", telefono = "", carnet = "", materias = []):
+    Persona.__init__(self, nombre, apellido, cedula, correo, telefono)
+    self.carnet = carnet
+    self.materias = materias
+
+estudiante1 = Estudiante("Stefani", "Perez", 1, "stefani.perez@correo.unimet.edu.ve", "0424-........", 1, ["Algoritmos", "Estructuras de Datos"])
+```
+
+Tambien podemos usar super().
+
+**Clase Hijo**
+```python
+class Estudiante(Persona):
+  def __init__(self, nombre, apellido, cedula, correo = "", telefono = "", carnet = "", materias = []):
+    super().__init__(self, nombre, apellido, cedula, correo, telefono)
+    self.carnet = carnet
+    self.materias = materias
+
+estudiante1 = Estudiante("Stefani", "Perez", 1, "stefani.perez@correo.unimet.edu.ve", "0424-........", 1, ["Algoritmos", "Estructuras de Datos"])    
+estudiante1.imprimirDatos()
+```
+
+
+### Polimorfismo (Pilar de POO)
+
+El polimorfismo nos permite modificar ligeramente los métodos y atributos de las subclases previamente definidas en la superclase (clase principal).
+
+De esta forma, construimos **métodos** con el *mismo nombre* pero con *diferente funcionalidad*.
+
+Una clase secundaria puede heredar un comportamiento definido imprimirDatos() pero de una manera ligeramente diferente, por ejemplo, imprimir otros atributos que no sean los de la clase padre.
+
+**Clase Padre**
+```python
+class Persona:
+  def __init__(self, nombre, apellido, carnet, cedula, materias, correo = "", telefono = ""):
+      self.nombre = nombre
+      self.apellido = apellido
+      self.cedula = cedula
+      self.correo = correo
+      self.telefono = telefono
+  
+  def imprimirDatos(this):
+      print("Persona: {} {} \nCedula: {} \nCorreo: {} \nTelefono: {}".format(this.nombre, this.apellido, this.cedula, this.correo, this.telefono))
+```
+
+**Clase Hijo**
+```python
+class Estudiante(Persona):
+  def __init__(self, nombre, apellido, cedula, correo = "", telefono = "", carnet = "", materias = []):
+    super().__init__(self, nombre, apellido, cedula, correo, telefono)
+    self.carnet = carnet
+    self.materias = materias
+
+  def imprimirDatos(this):
+    print("Carnet: {} \nMaterias: {}".format(this.carnet, this.materias))
+
+  def imprimirDatos2(this):
+    Persona.imprimirDatos(this)
+
+estudiante1 = Estudiante("Stefani", "Perez", 1, "stefani.perez@correo.unimet.edu.ve", "0424-........", 1, ["Algoritmos", "Estructuras de Datos"])    
+estudiante1.imprimirDatos()
+estudiante1.imprimirDatos2()
+```
+
+### Encapsulacion (Pilar de POO)
+
+La encapsulación es el proceso en el cual protegemos la integridad interna de los datos en una clase. Si bien no existe una declaración **private** en Python... les puede interesar el siguiente articulo para los que vayan a ver Estructuras de Datos el proximo trimestre.
+
+[Encapsulación en Python](https://docs.hektorprofe.net/python/programacion-orientada-a-objetos/encapsulacion/)
+
+## Lenguaje Unificado de Modelado (UML)
+
+El **Lenguaje Unificado de Modelado (UML)** puede ayudarte a modelar sistemas de diversas formas. Uno de los tipos más populares en el UML es el **Diagrama de Clases**. Los diagramas de clases son un tipo de diagrama de estructura porque describen lo que debe estar presente en el sistema que se está modelando.
+
+El UML se estableció como un modelo estandarizado para describir un enfoque de *Programación Orientada a Objetos (POO)*. Como las clases son los componentes básicos de los objetos, los diagramas de clases son los componentes básicos del UML. 
+
+Los diversos componentes en un diagrama de clases pueden representar las clases que se programarán en realidad, los objetos principales o la interacción entre clases y objetos.
+
+![Ejemplo de Diagrama de Clases 1](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/class-diagram-for-hotel-management-system-UML/UML_class_diagram_hotel-949x683.PNG)
+
+![Ejemplo de Diagrama de Clases 2](https://sites.google.com/site/todouml/_/rsrc/1359461616895/ejercicios/ejercicios-soluciones/diagrama-de-clases-empleados-de-una-empresa/DCempleados.jpg)
+
+### Articulos
+
+[Tutorial de diagrama de clases UML LucidChart](https://www.lucidchart.com/pages/es/tutorial-de-diagrama-de-clases-uml)
+
+[Tutorial de diagrama de clases UML Venngage](https://es.venngage.com/blog/diagrama-de-clases/)
+
+### Videos
+
+[Video tutorial de Diagrama de Clases UML](https://www.youtube.com/watch?v=Z0yLerU0g-Q&ab_channel=LucidSoftwareEspa%C3%B1ol)
+
+[Crear diagrama de clases en Miro](https://www.youtube.com/watch?v=zMpr6RIePf8&ab_channel=SaberProgramas)
+
+### Componentes del Diagrama de Clases
+Podemos representar cada clase como un rectángulo de tres filas. La fila superior contiene el *nombre de la clase*, la fila del centro contiene los *atributos de la clase* y la última expresa los *métodos o las operaciones* que la clase puede utilizar. Las clases y las subclases se agrupan para mostrar la relación estática entre cada objeto.
+
+### Modificadores de acceso
+
+Todas las clases poseen diferentes niveles de acceso en función del modificador de acceso (visibilidad):
+
+- Público (+)
+- Privado (-)
+- Protegido (#)
+- Paquete (~)
+- Derivado (/)
+- Estático (subrayado)
+
+### Relaciones
+
+![Relaciones](https://venngage-wordpress.s3.amazonaws.com/uploads/2022/05/class-diagram.png)
+
+Son los enlaces que pueden existir entre las clases.
+
+- **Herencia:** El proceso en el que una subclase o clase derivada recibe la funcionalidad de una superclase o clase principal, también se conoce como "generalización". Se simboliza mediante una línea de conexión recta con una punta de flecha cerrada que señala a la superclase.
+  
+![Herencia](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/class-diagram/class-diagram-inheritance-175x279.PNG)
+
+- **Asociación bidireccional:** La relación predeterminada entre dos clases. Ambas clases están conscientes una de la otra y de la relación que tienen entre sí. Esta asociación se representa mediante una línea recta entre dos clases.
+
+![Asociación bidireccional](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/class-diagram/class-diagram-bi-directional-association-689x182.PNG)
+
+- **Asociación unidireccional:** Una relación un poco menos común entre dos clases. Una clase está consciente de la otra e interactúa con ella. La asociación unidireccional se dibuja con una línea de conexión recta que señala una punta de flecha abierta desde la clase "knowing" a la clase "known".
+
+![Asociación unidireccional](https://d2slcw3kip6qmk.cloudfront.net/marketing/pages/chart/uml/class-diagram/class-diagram-unidirectional-association-600x184.PNG)
+
+### Multiplicidad
+
+La multiplicidad de una asociación determina *cuántos objetos* de cada tipo *intervienen en la relación*: El número de instancias de una clase que se relacionan con una instancia de la otra clase. Cada asociación tiene dos multiplicidades (una para cada extremo de la relación).
+
+- 1: No mas de uno.
+- 0..1: Cero o uno.
+- 0..*: Cero o muchos.
+- 1..*: Uno o muchos.
+- *: Muchos.
+
+### Resumen
+
+![Resumen Diagrama de Clases](https://www.webyempresas.com/wp-content/uploads/2021/11/diagrama-de-clases-uml.jpg)
+## Ejercicios
+
+### Ejercicio 5.1
+
+Se le pide que cree un algoritmo que permita el registro de personas. Debe guardar cada persona registrada en una lista, tambien se le solicita que use clases. La informacion que se desea guardar es el nombre, apellido, edad y DNI de cada persona que se registre en el sistema.
+
+**Requerimientos**
+- Usar clases.
+- Usar una lista para guardar la informacion.
+- Crear un metodo mostrar() que imprima toda la informacion de la persona.
+- Crear un metodo esMayor() que retorne verdadero si la persona tiene 18 años o mas y que retorne falso en caso contrario.
+
+### Ejercicio 5.2
+
+Cree una clase llamada Cuenta que tenga los siguientes atributos: titular (que es una persona) y cantidad (puede tener decimales). El titular será obligatorio y la cantidad es opcional. 
+
+Construya los siguientes métodos para la clase:
+
+- Un constructor.
+- Los setters y getters para cada uno de los atributos.
+- mostrar() que muestra los datos de la cuenta.
+- ingresar(cantidad) que ingresa una cantidad a la cuenta, si la cantidad introducida es negativa, se le indica al usuario que ingreso un monto invalido.
+- retirar(cantidad) que retira una cantidad a la cuenta. La cuenta puede estar en números rojos.
+
+### Ejercicio 5.3
+
+Ahora se le pide que cree una “Cuenta Joven”, para ello debe crear una nueva clase CuentaJoven que herede de la clase Cuenta. Cuando se crea esta nueva clase, además del titular y la cantidad, se debe guardar una bonificación que estará expresada en tanto por ciento.
+
+Construye los siguientes métodos para la clase:
+
+- Un constructor.
+- Los setters y getters para cada uno de los nuevos atributos.
+- esTitularValido() que devuelve verdadero si el titular es mayor de edad pero menor de 25 años y falso en caso contrario.
+- retirar(cantidad) que retira una cantidad a la cuenta si el titular es valido. La cuenta puede estar en números rojos.
+- mostrar() que ahora debe devolver el mensaje de “Cuenta Joven” y la bonificación de la cuenta.
+
+### Ejercicio 5.4 (Tarea)
+
+Cree una clase padre y 3 clases hijo a partir de esta. Use su imaginacion para asignar atributos y metodos a cada clase.
+
+### Ejercicio 5.5 (Tarea)
+
+Cree una clase Cadena que tenga como atributo un string. Debe tener los metodos: invertir() que retorna la cadena invertida, convertirMayusculas() que retorna la cadena en mayusculas, convertirMinusculas() que retorna la cadena en minusculas, esNumero() que retorna verdadero si la cadena es un numero y falso en caso contrario, conseguirTamanio() que retorna el tamaño de la cadena, conseguirCadena() que retorna el atributo cadena, imprimir() que imprime la cadena, y cambiarCadena() que cambia el valor del atributo cadena. 
+
+Tenga en cuenta que la clase debe tener un constructor. 
+
+

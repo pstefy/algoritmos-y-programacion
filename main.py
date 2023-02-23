@@ -1,31 +1,25 @@
-class Student():
-    def __init__(self, nombre, apellido, carnet, cedula, materias, correo = "", telefono = ""):
+class Persona:
+    def __init__(self, nombre, apellido, cedula, correo = "", telefono = ""):
         self.nombre = nombre
         self.apellido = apellido
-        self.carnet = carnet
         self.cedula = cedula
-        self.materias = materias
         self.correo = correo
         self.telefono = telefono
 
-    def cambiarTelefono(self, telefono):
-        self.telefono = telefono
-    
-    def cambiarCorreo(this, correo):
-        this.correo = correo
+    def imprimirDatos(this):
+        print("Persona: {} {} \nCedula: {} \nCorreo: {} \nTelefono: {}".format(this.nombre, this.apellido, this.cedula, this.correo, this.telefono))
 
-    def imprimirMaterias(self):
-        for materia in self.materias:
-            print(materia)
+class Estudiante(Persona):
+    def __init__(self, nombre, apellido, cedula, correo = "", telefono = "", carnet = 0, materias = []):
+        super().__init__(nombre, apellido, cedula, correo, telefono)
+        self.carnet = carnet
+        self.materias = materias
 
-    def imprimirDatosEstudiante(estudiante):
-        return "Estudiante: {} {} \nCarnet: {} \nCedula: {} \nCorreo: {} \nTelefono: {}".format(estudiante.nombre, estudiante.apellido, estudiante.carnet, estudiante.cedula, estudiante.correo, estudiante.telefono)
+    def imprimirDatos(this):
+        print("Carnet: {} \nMaterias: {}".format(this.carnet, this.materias))
+        
+    def imprimirDatos2(this):
+        Persona.imprimirDatos(this)
 
-
-estudiante1 = Student("Stefani", "Perez", 1, 1, ["Algoritmos", "Estructuras de Datos"], "stefani.perez@correo.unimet.edu.ve")
-
-print(estudiante1.imprimirDatosEstudiante())
-estudiante1.cambiarCorreo("@")
-estudiante1.apellido = "Teran"
-print(estudiante1.imprimirDatosEstudiante())
-estudiante1.imprimirMaterias()
+estudiante1 = Estudiante("Stefani", "Perez", 1, "stefani.perez@correo.unimet.edu.ve", "0424-........", 1, ["Algoritmos", "Estructuras de Datos"])
+estudiante1.imprimirDatos2()
