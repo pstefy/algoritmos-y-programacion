@@ -106,6 +106,20 @@
     - [Ejercicio 54](#ejercicio-54)
     - [Ejercicio 4.3](#ejercicio-43)
     - [Ejercicio 4.4](#ejercicio-44)
+- [Preparaduría 5](#preparaduría-5)
+  - [Programacion Orientada a Objetos (POO)](#programacion-orientada-a-objetos-poo)
+    - [Clase](#clase)
+      - [Crear una clase](#crear-una-clase)
+    - [Objetos](#objetos)
+      - [Crear un objeto](#crear-un-objeto)
+    - [Función __init__() (Constructor de la clase)](#función-init-constructor-de-la-clase)
+    - [Metodos](#metodos)
+      - [Usar metodos](#usar-metodos)
+    - [Modificar atributos](#modificar-atributos)
+    - [Sobrecargar constructores](#sobrecargar-constructores)
+    - [Programacion Orientada a Objetos (POO) vs Programación Estructurada (Secuencial)](#programacion-orientada-a-objetos-poo-vs-programación-estructurada-secuencial)
+    - [Herencia](#herencia)
+  - [UML](#uml)
 
 # Introducción a la materia
 
@@ -1876,3 +1890,155 @@ Desarrolle un algoritmo que dada la siguiente lista de numeros la **ordene** con
 ```python
 lista = [6,3,9,2,8,1,4,7,5]
 ```
+
+# Preparaduría 5
+
+## Programacion Orientada a Objetos (POO)
+La programación orientada a objetos (POO) es un paradigma de programacion que organiza las funciones en entidades llamadas **objetos**. Estos objetos se crean a partir de **clases**, siendo asi cada objeto una instancia de la clase. 
+
+En resumen, se construyen objetos que almacenan datos y que contienen distintas funcionalidades. La POO nos permite reutilizar código mediante la **abstracción**. La *abstracción* es el proceso en el cual nos preguntamos qué *atributos* y *métodos* puede necesitar nuestra **clase**.
+
+Python es un lenguaje de programación orientado a objetos. Un objeto en Python es una colección de datos (atributos) y comportamientos (métodos), y esto... ¿a que se parece? Pues se parece a los tipos de datos en Python, tal como los strings que son una cadena de caracteres que a su vez tiene metodos como upper(), lower(), entre otros.
+
+[¿Qué es la programacion orientada a objetos?](https://www.youtube.com/watch?v=DlphYPc_HKk&ab_channel=EDteam)
+### Clase
+
+Las clases son plantillas que contienen la estructura básica de un objeto: *atributos* y *métodos*. Cada objeto creado se basara en este *molde*.
+
+#### Crear una clase
+
+Para crear una clase, utilizaremos la palabra **class**, seguido del nombre de la clase (primera letra en mayuscula).
+
+```python
+class Student:
+  pass
+```
+
+Usamos *pass* simplemente para indicar que no queremos especificar ninguna lógica de programación interna en la clase.
+
+### Objetos
+
+Los objetos tienen datos (atributos) y funcionalidades (metodos). Los atributos deberian ser identificados con sustantivos, y los métodos con verbos.
+
+Los **atributos** son variables internas dentro de los objetos, mientras que los métodos son **funciones** que producen algún comportamiento.
+
+#### Crear un objeto
+
+Para crear un objeto debemos igualar una variable (preferible que el nombre tenga relacion a la clase) al nombre de la clase seguido de parentesis. De esta forma, llamaremos a lo que se conoce como el **constructor** de la clase.
+
+```python
+estudiante1 = Student()
+```
+
+### Función __init__() (Constructor de la clase)
+Todas las clases tienen una función llamada __init__(), que siempre se ejecuta cuando se inicia la clase, es por esto que se le conoce como constructor. Esta funcion nos permite asignar valores a las propiedades del objeto u otras operaciones cuando se crea el objeto.
+
+Usaremos el parámetro **self** (referencia a la instancia actual de la clase) para poder acceder a los atributos que pertenecen a la clase. Podemos llamarlo de cualquier manera pero para efecto de las preparadurias usaremos **self** o **this**.
+
+```python
+class Student():
+  def __init__(self, nombre, apellido, carnet, cedula, materias, correo, telefono):
+    self.nombre = nombre
+    self.apellido = apellido
+    self.carnet = carnet
+    self.cedula = cedula
+    self.materias = materias
+    self.correo = correo
+    self.telefono = telefono
+
+estudiante1 = Student("Stefani", "Perez", 1, 1, ["Algoritmos", "Estructuras de Datos"], "stefani.perez@correo.unimet.edu.ve", "0424-........")
+
+print(estudiante1.nombre) # Stefani
+print(estudiante1) # Posicion en memoria
+```
+
+Para acceder a los atributos del objeto basta con colocar el nombre de la variable que lo contiene seguido de un punto y luego indicando el nombre del atributo.
+
+### Metodos
+Los **métodos** en los objetos son *funciones* que pertenecen al objeto. Se crean tal como hemos creado las funciones anteriormente pero dentro de una clase para que sea considerado un metodo de la misma.
+
+```python
+class Student():
+  def __init__(self, nombre, apellido, carnet, cedula, materias, correo = "", telefono = ""):
+      self.nombre = nombre
+      self.apellido = apellido
+      self.carnet = carnet
+      self.cedula = cedula
+      self.materias = materias
+      self.correo = correo
+      self.telefono = telefono
+
+  def cambiarTelefono(self, telefono):
+      self.telefono = telefono
+  
+  def cambiarCorreo(this, correo):
+      this.correo = correo
+
+  def imprimirMaterias(self):
+      for materia in self.materias:
+          print(materia)
+
+  def imprimirDatosEstudiante(estudiante):
+      return "Estudiante: {} {} \nCarnet: {} \nCedula: {} \nCorreo: {} \nTelefono: {}".format(estudiante.nombre, estudiante.apellido, estudiante.carnet, estudiante.cedula, estudiante.correo, estudiante.telefono)
+
+
+estudiante1 = Student("Stefani", "Perez", 1, 1, ["Algoritmos", "Estructuras de Datos"], "stefani.perez@correo.unimet.edu.ve", "0424-........")
+
+print(estudiante1.imprimirDatosEstudiante())
+```
+
+```shell
+Estudiante: Stefani Perez 
+Carnet: 1
+Cedula: 1
+Correo: stefani.perez@correo.unimet.edu.ve
+Telefono: 0424-........
+```
+
+#### Usar metodos
+
+```python
+estudiante1 = Student("Stefani", "Perez", 1, 1, ["Algoritmos", "Estructuras de Datos"], "stefani.perez@correo.unimet.edu.ve", "0424-........")
+estudiante1.imprimirMaterias()
+```
+
+```shell
+Algoritmos
+Estructuras de Datos
+```
+
+### Modificar atributos
+
+```python
+estudiante1 = Student("Stefani", "Perez", 1, 1, ["Algoritmos", "Estructuras de Datos"], "stefani.perez@correo.unimet.edu.ve", "0424-........")
+
+estudiante1.cambiarCorreo("@")
+estudiante1.cambiarTelefono("0")
+estudiante1.apellido = "Teran"
+
+print(estudiante1.imprimirDatosEstudiante())
+```
+
+```shell
+Estudiante: Stefani Teran
+Carnet: 1
+Cedula: 1
+Correo: @
+Telefono: 0
+```
+
+### Sobrecargar constructores
+
+[Sobrecargar un constructor en Python](https://www.delftstack.com/es/howto/python/overload-constructors-in-python/)
+### Programacion Orientada a Objetos (POO) vs Programación Estructurada (Secuencial)
+
+| Programacion Orientada a Objetos                     | Programación Estructurada                                |
+| ---------------------------------------------------- | -------------------------------------------------------- |
+| Poco codigo en varios lugares                        | Mucho codigo en pocos lugares                            |
+| Permite reutilizar codigo, priorizando la eficiencia | Tiende a repetir codigo, lo que llega a ser ineficiente  |
+| Enfoque por objetos                                  | Enfoque por bloques de codigo                            |
+| Mas facil de depurar                                 | Mas dificil de depurar                                   |
+
+### Herencia
+
+## UML
