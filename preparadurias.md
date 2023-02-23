@@ -2280,12 +2280,12 @@ Construye los siguientes métodos para la clase:
 
 ### Ejercicio 5.4 (Tarea)
 
-Cree una clase padre y 3 clases hijo a partir de esta. Use su imaginacion para asignar atributos y metodos a cada clase.
+Cree una clase padre y 3 clases hijo a partir de esta. Use su imaginacion para asignar atributos y metodos a cada clase. Ademas, debe crear un diagrama de clases de lo planteado.
 
 ### Ejercicio 5.5 (Tarea)
 
 Cree una clase Cadena que tenga como atributo un string. Debe tener los metodos: invertir() que retorna la cadena invertida, convertirMayusculas() que retorna la cadena en mayusculas, convertirMinusculas() que retorna la cadena en minusculas, esNumero() que retorna verdadero si la cadena es un numero y falso en caso contrario, conseguirTamanio() que retorna el tamaño de la cadena, conseguirCadena() que retorna el atributo cadena, imprimir() que imprime la cadena, y cambiarCadena() que cambia el valor del atributo cadena. 
 
-Tenga en cuenta que la clase debe tener un constructor. 
+Tenga en cuenta que la clase debe tener un constructor. y que debe crear un diagrama de clases de lo planteado.
 
 
