@@ -138,6 +138,28 @@
     - [Ejercicio 5.3](#ejercicio-53)
     - [Ejercicio 5.4 (Tarea)](#ejercicio-54-tarea)
     - [Ejercicio 5.5 (Tarea)](#ejercicio-55-tarea)
+- [Preparaduría 6](#preparaduría-6)
+  - [Manejo de archivos](#manejo-de-archivos)
+    - [Abrir un archivo](#abrir-un-archivo)
+    - [Cerrar un archivo](#cerrar-un-archivo)
+    - [Leer un archivo de texto](#leer-un-archivo-de-texto)
+    - [Escribir en un archivo](#escribir-en-un-archivo)
+    - [Eliminar archivos y carpetas](#eliminar-archivos-y-carpetas)
+    - [Ejercicios con archivos](#ejercicios-con-archivos)
+  - [APIs](#apis)
+    - [Instalación de pip](#instalación-de-pip)
+    - [Librería, API, Framework y SDK](#librería-api-framework-y-sdk)
+    - [Uso de paquetes/librerías](#uso-de-paqueteslibrerías)
+    - [Ejemplos de paquetes/librerías](#ejemplos-de-paqueteslibrerías)
+  - [Notación Big O](#notación-big-o)
+    - [Términos más utilizados](#términos-más-utilizados)
+    - [O(1): Complejidad Constante](#o1-complejidad-constante)
+    - [O(n): Complejidad Lineal](#on-complejidad-lineal)
+    - [O(log n): Complejidad Logarítmica](#olog-n-complejidad-logarítmica)
+    - [O(n ^ 2): Complejidad Cuadrática](#on--2-complejidad-cuadrática)
+    - [O(2 ^ n): Complejidad Exponencial](#o2--n-complejidad-exponencial)
+    - [Ejercicios de complejidad](#ejercicios-de-complejidad)
+  - [Repaso Recursividad](#repaso-recursividad)
 
 # Introducción a la materia
 
@@ -2289,3 +2311,364 @@ Cree una clase Cadena que tenga como atributo un string. Debe tener los metodos:
 Tenga en cuenta que la clase debe tener un constructor. y que debe crear un diagrama de clases de lo planteado.
 
 
+
+# Preparaduría 6
+
+## Manejo de archivos
+
+Es de suma importancia para la realizacion de nuestros programas el entender como se manejan los archivos de texto. Python nos permite tanto crear, como leer, actualizar y eliminar archivos.
+
+De esta forma, podremos trabajar con la informacion contenida en estos archivos. El tipo de archivo que estaremos manejando sera .txt
+
+### Abrir un archivo
+
+Usaremos la función **open()** para abrir archivos en Python, esta función recibe dos parámetros: *nombre de archivo* y *modo*.
+
+Hay cuatro modos diferentes para abrir un archivo:
+
+| Modo | Descripción                                                                                                             |
+| ---- | ----------------------------------------------------------------------------------------------------------------------- |
+| r    | Leer (valor por defecto). Abre un archivo para su lectura, da error si el archivo no existe.                            |
+| a    | Agregar. Abre un archivo para agregar información, crea el archivo si no existe.  No eliminara la información anterior  |
+| w    | Escribir. Abre un archivo para sobrescribirlo, crea el archivo si no existe. Eliminara la información anterior          |
+| x    | Crear. Crea el archivo especificado, devuelve un error si el archivo existe.                                            |
+
+**Abrir archivo**
+```python
+archivo = open("nombreDelArchivo.txt") # Por defecto asume que es r (Leer)
+archivo = open("carpeta\carpeta\nombreDelArchivo.txt") # Lo primero que le pasamos es una ruta (path)
+archivo2 = open("nombreDelArchivo.txt", "x") # Crea el archivo en caso de no existir porque le indicamos que es x (Crear)
+```
+
+### Cerrar un archivo
+
+Debemos cerrar los archivos luego de usarlos en nuestro programa por buenas practicas, esto se puede hacer con el método **close()**.
+
+Siempre se deben cerrar los archivos porque, en algunos casos, los cambios realizados en el archivo no se mostraran hasta que se cierre el archivo.
+
+**Cerrar archivo**
+```python
+archivo = open("asociacionDeVecinos.txt", "r")
+archivo.close()
+```
+
+### Leer un archivo de texto
+
+La función **open()** nos retornara un objeto Archivo que tiene un método para leer su contenido llamado **read()**.
+
+**Input**
+```python
+archivo = open("asociacionDeVecinos.txt", "r") # Abre el archivo ubicado en la ruta indicada (path) para su lectura porque le indicamos que es r (Leer).
+print(archivo.read()) # Imprimimos el string que nos retorna read()
+archivo.close()
+```
+
+**Output**
+```shell
+Lupin
+3,APARTAMENTO LIBRE
+2,Juliette Pellegrini/4/045258
+1,Mikkel Nielsen/3/0423423432,Raoul/2/0423423432,Assane Diop/1/0423423432
+Dark
+3,Charlotte Doppler/13/032049,Franziska Doppler/12/032049,Elisabeth Doppler/11/032049
+2,Martha Nielsen/10/021467,Ulrich Nielsen/9/021467,Magnus Nielsen/8/021467,Katharina Nielsen/7/021467
+1,Hannah Kahnwald/6/041235,Jonas Kahnwald/5/041235
+The Umbrella Academy
+1,Ben/19/345652,Luther/18/3423,Five/17/34234,Klaus/16/23123,Allison/15/42342,Vanya/14/42342
+```
+
+Tambien podemos indicar **cuantos caracteres** queremos leer del archivo: 
+
+**Input**
+```python
+archivo = open("asociacionDeVecinos.txt", "r")
+print(archivo.read(15))
+archivo.close()
+```
+
+**Output**
+```shell
+Lupin
+3,APARTAM
+```
+
+Además, podemos tambien leer **líneas** del archivo con el método **readLine()**:
+
+**Input**
+```python
+archivo = open("asociacionDeVecinos.txt", "r")
+print(archivo.readline()) # Primera linea
+print(archivo.readline()) # Segunda linea
+archivo.close()
+```
+
+**Output**
+```shell
+Lupin
+
+3,APARTAMENTO LIBRE
+```
+
+Entonces, si queremos leer **todo el archivo** podemos hacerlo con un **for** de la siguiente forma:
+
+**Input**
+```python
+archivo = open("asociacionDeVecinos.txt", "r")
+for linea in archivo:
+  print(linea)
+archivo.close()
+```
+
+**Output**
+```shell
+Lupin
+
+3,APARTAMENTO LIBRE
+
+2,Juliette Pellegrini/4/045258
+
+1,Mikkel Nielsen/3/0423423432,Raoul/2/0423423432,Assane Diop/1/0423423432
+
+Dark
+
+3,Charlotte Doppler/13/032049,Franziska Doppler/12/032049,Elisabeth Doppler/11/032049
+
+2,Martha Nielsen/10/021467,Ulrich Nielsen/9/021467,Magnus Nielsen/8/021467,Katharina Nielsen/7/021467
+
+1,Hannah Kahnwald/6/041235,Jonas Kahnwald/5/041235
+
+The Umbrella Academy
+
+1,Ben/19/345652,Luther/18/3423,Five/17/34234,Klaus/16/23123,Allison/15/42342,Vanya/14/42342
+```
+
+Tambien podriamos usar **readLines()** para leer todo el archivo. Este método nos retorna una lista de strings, donde cada string es una linea del archivo.
+
+**Input**
+```python
+archivo = open("asociacionDeVecinos.txt", "r")
+print(archivo.readlines())
+archivo.close()
+```
+
+**Output**
+```shell
+['Lupin\n', '3,APARTAMENTO LIBRE\n', '2,Juliette Pellegrini/4/045258\n', '1,Mikkel Nielsen/3/0423423432,Raoul/2/0423423432,Assane Diop/1/0423423432\n', 'Dark\n', '3,Charlotte Doppler/13/032049,Franziska Doppler/12/032049,Elisabeth Doppler/11/032049\n', '2,Martha Nielsen/10/021467,Ulrich Nielsen/9/021467,Magnus Nielsen/8/021467,Katharina Nielsen/7/021467\n', '1,Hannah Kahnwald/6/041235,Jonas Kahnwald/5/041235\n', 'The Umbrella Academy\n', '1,Ben/19/345652,Luther/18/3423,Five/17/34234,Klaus/16/23123,Allison/15/42342,Vanya/14/42342']
+```
+
+### Escribir en un archivo
+
+Tenemos dos modos para escribir en un archivo: **a** (Agregara al final del archivo) y **w** (Eliminara la información anterior y agregara lo indicado).
+
+**Modo a**
+```python
+archivo = open("asociacionDeVecinos.txt", "a") # Abrimos el archivo y se indica que agregaremos información
+archivo.write("Alice in Borderland\n1,APARTAMENTO LIBRE") # Agregamos "Alice in Borderland\n1,APARTAMENTO LIBRE" al final del archivo
+archivo.close() # Cerramos el archivo
+
+archivo = open("asociacionDeVecinos.txt", "r") # Abrimos el archivo para su lectura
+for linea in archivo:
+  print(linea)
+archivo.close() # Cerramos el archivo
+```
+
+**Output**
+```shell
+Lupin
+
+3,APARTAMENTO LIBRE
+
+2,Juliette Pellegrini/4/045258
+
+1,Mikkel Nielsen/3/0423423432,Raoul/2/0423423432,Assane Diop/1/0423423432
+
+Dark
+
+3,Charlotte Doppler/13/032049,Franziska Doppler/12/032049,Elisabeth Doppler/11/032049
+
+2,Martha Nielsen/10/021467,Ulrich Nielsen/9/021467,Magnus Nielsen/8/021467,Katharina Nielsen/7/021467
+
+1,Hannah Kahnwald/6/041235,Jonas Kahnwald/5/041235
+
+The Umbrella Academy
+
+1,Ben/19/345652,Luther/18/3423,Five/17/34234,Klaus/16/23123,Allison/15/42342,Vanya/14/42342
+
+Alice in Borderland
+
+1,APARTAMENTO LIBRE
+```
+
+**Modo w**
+```python
+archivo = open("asociacionDeVecinos.txt", "w") # Abrimos el archivo y se indica que agregaremos información
+archivo.write("Alice in Borderland\n1,APARTAMENTO LIBRE") # Vaciamos el archivo y agregamos "Alice in Borderland\n1,APARTAMENTO LIBRE"
+archivo.close() # Cerramos el archivo
+
+archivo = open("asociacionDeVecinos.txt", "r") # Abrimos el archivo para su lectura
+for linea in archivo:
+  print(linea)
+archivo.close() # Cerramos el archivo
+```
+
+**Output**
+```shell
+Alice in Borderland
+
+1,APARTAMENTO LIBRE
+```
+
+### Eliminar archivos y carpetas
+
+Si quieren leer un poco al respecto:
+
+[Python Delete File](https://www.w3schools.com/python/python_file_remove.asp)
+
+### Ejercicios con archivos
+
+[Ejercicios de Ficheros](https://aprendeconalf.es/docencia/python/ejercicios/ficheros/)
+
+## APIs
+
+Una **Application Programming Interface** (*API*) es una interfaz de programación de aplicaciones. Las *API* permiten que sus productos y servicios se comuniquen con otros, sin necesidad de saber cómo están implementados. Esto simplifica el desarrollo de las aplicaciones y permite ahorrar tiempo y dinero.
+
+![¿Sabes qué es una API?](https://edteam-media.s3.amazonaws.com/community/original/7dc50204-6f44-4000-bfe3-1d8677bab50c.jpg)
+
+[¿Qué es una API?](https://www.youtube.com/watch?v=u2Ms34GE14U&ab_channel=EDteam)
+
+### Instalación de pip
+
+**pip** es un sistema de administración de paquetes que se utiliza para instalar y administrar paquetes/bibliotecas de software escritos en Python. Estos archivos se almacenan en un gran "repositorio en línea" denominado *Python Package Index (PyPI)*. 
+
+*pip* usa *PyPI* como la fuente predeterminada para los paquetes y sus dependencias. Así que cada vez que usamos:
+
+**Input**
+```shell
+pip install nombre_paquete
+```
+
+*pip* buscará ese paquete en *PyPI* y, si lo encuentra, lo descargará e instalará en su sistema local.
+
+[How to Install PIP ?](https://pip.pypa.io/en/stable/installation/)
+[How to Install PIP on Windows ?](https://www.geeksforgeeks.org/how-to-install-pip-on-windows/)
+[How to install pip in macOS ?](https://www.geeksforgeeks.org/how-to-install-pip-in-macos/)
+
+### Librería, API, Framework y SDK
+
+[La relación entre Librería, API, Framework y SDK](https://medium.com/@pedrohr99/la-relaci%C3%B3n-entre-librer%C3%ADa-api-framework-y-sdk-en-el-desarrollo-de-apple-b8c971cf06e3#:~:text=Una%20API%20(Interfaz%20de%20Programaci%C3%B3n,librer%C3%ADas%20con%20las%20que%20conecta.))
+
+### Uso de paquetes/librerías
+
+Para poder usar un paquete/librería deberemos instalar esta con **pip install nombre-paquete**. Algunos se instalan con python automaticamente, como en el caso del modulo **Requests**, y otros requieren ser instalados como en el caso de **Streamlit**, que usaremos para esta prepa.
+
+**Instalar Streamlit**
+```shell
+pip install streamlit
+```
+
+**Importar Streamlit**
+```python
+import streamlit as st
+```
+
+Cada librería tiene su propia **documentacion**, por ello sera necesario que la lean para que sepan como se usa.
+
+### Ejemplos de paquetes/librerías
+
+- [Streamlit](https://streamlit.io/): Streamlit es una librería que, de forma sencilla, te permite crear todo tipo de aplicaciones de datos desarrolladas en Python.
+- [TensorFlow](https://www.tensorflow.org/?hl=es-419): TensorFlow funciona como una biblioteca computacional para escribir nuevos algoritmos que involucran una gran cantidad de operaciones de tensor, ya que las redes neuronales pueden expresarse fácilmente como gráficos computacionales, pueden implementarse usando TensorFlow como una serie de operaciones en tensores. Además, los tensores son matrices N-dimensionales que representan sus datos.
+- [Numpy](https://numpy.org/): NumPy es una biblioteca para el lenguaje de programación Python que da soporte para crear vectores y matrices grandes multidimensionales, junto con una gran colección de funciones matemáticas de alto nivel para operar con ellas.
+- [Pandas](https://pandas.pydata.org/): Pandas es una biblioteca de aprendizaje automático en Python que proporciona estructuras de datos de alto nivel y una amplia variedad de herramientas para el análisis. Una de las grandes características de esta biblioteca es la capacidad de traducir operaciones complejas con datos utilizando uno o dos comandos. Los pandas tienen tantos métodos incorporados para agrupar, combinar datos y filtrar, así como la funcionalidad de series temporales.
+- [MatPlotLib](https://matplotlib.org/): Matplotlib es una biblioteca completa para crear visualizaciones estáticas, animadas e interactivas en Python. Esta es una biblioteca de ciencia de datos estándar que ayuda a generar visualizaciones de datos, como diagramas y gráficos bidimensionales (histogramas, diagramas de dispersión, gráficos de coordenadas no cartesianas). Matplotlib es una de esas bibliotecas de trazado que son realmente útiles en proyectos de ciencia de datos: proporciona una API orientada a objetos para incrustar trazados en aplicaciones.
+- [Jupyter](https://jupyter.org/)
+- [Plotly](https://plotly.com/python/): Esta herramienta basada en la web para la visualización de datos que ofrece muchos útiles gráficos fuera de la caja – se pueden encontrar en la página web Plot.ly . La biblioteca funciona muy bien en aplicaciones web interactivas.
+- [Requests](https://realpython.com/python-requests/)
+
+
+## Notación Big O
+
+La **notación Big O** es una notación matemática para definir el rendimiento o complejidad de un algoritmo, podemos determinar su complejidad en el tiempo o en el espacio. Como hoy en dia lo que nos sobra es espacio, entonces le daremos mas importancia al tiempo. 
+
+Es una representación relativa de la complejidad de un algoritmo. Con la **notación Big O** expresamos el tiempo de ejecución en términos de: qué tan rápido crece en relación con la entrada, a medida que la entrada se hace más grande.
+
+La **notación Big O** es una herramienta muy funcional para determinar la complejidad de un algoritmo que estemos utilizando, permitiéndonos medir su rendimiento en cuanto a uso de espacio en disco, recursos (memoria y ciclos del reloj del CPU) y tiempo de ejecución, entre otras, ayudándonos a identificar el *peor escenario donde el algoritmo llegue a su más alto punto de exigencia*.
+
+[Notación Big O: Guía para Principiantes](https://metcoder.medium.com/notacion-big-0-para-principiantes-f9cbb4b6bec8)
+
+[Complejidad Algoritmica](http://patriciaemiguel.com/assets/2019-09-04-complejidad-algoritmica-01.png)
+
+[Calcular la complejidad con respecto al tiempo](http://patriciaemiguel.com/assets/2019-09-04-complejidad-algoritmica-02.png)
+
+### Términos más utilizados
+
+- O(1) -> **constante**.
+- O(n) -> **lineal**.
+- O(log n) -> **logarítmica**.
+- O(n ^ 2) -> **cuadrática**.
+- O(2 ^ n) -> **exponencial**.
+
+### O(1): Complejidad Constante
+
+La complejidad constante nos indica que, *sin importar el tamaño de entrada o salida*, el tiempo de ejecución y recursos utilizados por nuestro algoritmo **siempre será el mismo**. Podemos verlas como funciones “estáticas” debido a que siempre se comportarán de la misma manera, no importa las veces que sea ejecutada ni donde.
+
+```python
+def saludar():
+  print("Hola")
+```
+
+### O(n): Complejidad Lineal
+
+Decimos que un algoritmo tiene complejidad linear, cuando su tiempo de ejecución y/o uso de recursos es **directamente proporcional** (es decir que se incrementa linealmente) **al tamaño del valor de entrada** necesario para la ejecución del algoritmo.
+
+```python
+def imprimirLista(lista): #Su complejidad dependera del tamaño de la lista
+  for elemento in lista:
+    print(elemento)
+```
+
+### O(log n): Complejidad Logarítmica
+
+La complejidad logarítmica es dada cuando el tiempo de ejecución o uso de recursos es **directamente proporcional al resultado logarítmico del tamaño del valor de entrada**. Es decir, si tenemos un dato de entrada cuyo tamaño es 10 y nos toma 1 segundo en la implementación del algoritmo, significa que por un valor de entrada cuyo tamaño es 100, nos debe tomar 2 segundos en realizar el algoritmo, un valor de 1000 nos debe tomar 3 segundos y así consecuentemente. Los algoritmos de esta complejidad generalmente la consiguen porque reducen el tamaño de los datos de entrada con cada paso ejecutado.
+
+Un ejemplo seria la **Busqueda Binaria**.
+
+[ALGORITMOS EN PYTHON: BUSQUEDA BINARIA](https://programacionpython80889555.wordpress.com/2021/12/22/algoritmos-en-python-busqueda-binaria/#:~:text=Tambi%C3%A9n%20llamada%20%C2%ABb%C3%BAsqueda%20de%20intervalo,modo%20que%20si%20ambos%20no)
+
+[Binary Search](https://www.geeksforgeeks.org/binary-search/)
+
+### O(n ^ 2): Complejidad Cuadrática
+
+Encontramos complejidad cuadrática en los algoritmos, cuando su rendimiento es **directamente proporcional al cuadrado del tamaño del valor de entrada**. Es decir, si tenemos como dato de entrada un arreglo con un tamaño de 4 elementos que queremos comparar para ver si hay elementos repetidos, tendremos que hacer 16 comparaciones en total para completar nuestro algoritmo. Esta complejidad es común encontrarla en algoritmos de ordenamiento de datos como el método de la burbuja, el de inserción y el método de selección, entre algunos otros.
+
+```python
+def compararElementos(lista):
+  for x in range(len(lista)):
+    for y in range(len(lista)):
+      if (x != y and lista[x] == lista[y]):
+        print("El elemento {} es igual a {}.".format(lista[x], lista[y]))
+```
+
+La complejidad puede incrementarse con más ciclos anidados, hasta llegar a ser una complejidad n * n.
+
+### O(2 ^ n): Complejidad Exponencial
+
+Cuando un algoritmo tiene complejidad exponencial, su rendimiento **se incrementa al doble cada vez que se agregue un nuevo dato al valor de entrada**, por ende, incrementando su tamaño de manera **exponencial**. Esto quiere decir que si tenemos un arreglo con 1 elemento y nos toma 10 segundos ejecutar el algoritmo, con 2 elementos nos deberá tomar 100 segundos, con 3 nos deberá tomar 1000, continuando de manera sucesiva.
+
+```python
+def fibonacci(numero):
+  if (numero <= 1):
+    return numero
+  return fibonacci(numero - 1) + fibonacci(numero - 2)
+```
+
+[Sucesión de Fibonacci](https://es.wikipedia.org/wiki/Sucesi%C3%B3n_de_Fibonacci)
+
+### Ejercicios de complejidad
+
+[Ejercicios](http://patriciaemiguel.com/assets/2020-09-13-ejercicios-complejidad-algoritmica.png)
+
+## Repaso Recursividad
+
+- [Recursividad 1](https://ellibrodepython.com/recursividad)
+- [Recursividad 2](https://gist.github.com/jmcalvomartin/7a8b442f28f8da990287e27c4d54f13e)
+- [Diseño de algoritmos recursivos](https://programacionpython.ecyt.unsam.edu.ar/material/11_Recursion/03_Diseno_Recursivo/)
