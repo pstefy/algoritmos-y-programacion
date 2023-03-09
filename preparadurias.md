@@ -160,6 +160,9 @@
     - [O(2 ^ n): Complejidad Exponencial](#o2--n-complejidad-exponencial)
     - [Ejercicios de complejidad](#ejercicios-de-complejidad)
   - [Repaso Recursividad](#repaso-recursividad)
+- [Preparaduría 7](#preparaduría-7)
+  - [Git](#git)
+  - [GitHub](#github)
 
 # Introducción a la materia
 
@@ -2672,3 +2675,17 @@ def fibonacci(numero):
 - [Recursividad 1](https://ellibrodepython.com/recursividad)
 - [Recursividad 2](https://gist.github.com/jmcalvomartin/7a8b442f28f8da990287e27c4d54f13e)
 - [Diseño de algoritmos recursivos](https://programacionpython.ecyt.unsam.edu.ar/material/11_Recursion/03_Diseno_Recursivo/)
+
+# Preparaduría 7
+
+## Git
+
+La **presentacion** se encuentra en el Notion de las preparadurias.
+[Grabación](https://youtu.be/wzZVCnPiBkw)
+
+
+## GitHub
+
+La **presentación** se encuentra en el Notion de las preparadurias.
+[Grabación](https://youtu.be/wzZVCnPiBkw)
+
