@@ -163,6 +163,19 @@
 - [Preparaduría 7](#preparaduría-7)
   - [Git](#git)
   - [GitHub](#github)
+- [Preparaduría 8](#preparaduría-8)
+  - [Tips para el quiz](#tips-para-el-quiz)
+    - [Metodo __str__()](#metodo-str)
+    - [Ejercicio 8.1](#ejercicio-81)
+    - [Ejercicio 8.2](#ejercicio-82)
+  - [Proyecto](#proyecto)
+  - [JSON](#json)
+  - [Repaso APIs](#repaso-apis)
+  - [Algoritmos de Ordenamiento](#algoritmos-de-ordenamiento)
+    - [Método de Ordenamiento de la Burbuja (BubbleSort)](#método-de-ordenamiento-de-la-burbuja-bubblesort)
+    - [Método de Ordenamiento de Selección (SelectionSort)](#método-de-ordenamiento-de-selección-selectionsort)
+    - [Método de Ordenamiento de Inserción (InsertionSort)](#método-de-ordenamiento-de-inserción-insertionsort)
+    - [Método de Ordenamiento por mezcla (MergeSort)](#método-de-ordenamiento-por-mezcla-mergesort)
 
 # Introducción a la materia
 
@@ -2689,3 +2702,292 @@ La **presentacion** se encuentra en el Notion de las preparadurias.
 La **presentación** se encuentra en el Notion de las preparadurias.
 [Grabación](https://youtu.be/wzZVCnPiBkw)
 
+# Preparaduría 8
+
+## Tips para el quiz
+
+- [Repasar el uso del método **__str__()**.](https://www.educative.io/answers/what-is-the-str-method-in-python)
+- Practicar el uso de **POO**.
+- Repasar el manejo de **estructuras combinadas**.
+- Leer **bien** el enunciado de cada pregunta.
+
+
+### Metodo __str__()
+
+La función **__str__()** controla lo que se debe devolver cuando el objeto de clase se representa como una **cadena**.
+
+```python
+class Punto:
+
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
+
+    def __str__(self):
+        return f"({self.x},{self.y})"
+```
+
+```shell
+(x,y)
+```
+
+### Ejercicio 8.1
+
+En este ejercicio vas a trabajar el concepto de puntos, coordenadas y vectores sobre el plano cartesiano y cómo la Programación Orientada a Objetos puede ser una excelente aliada para trabajar con ellos. No está pensado para que hagas ningún tipo de cálculo sino para que practiques la automatización de tareas.
+
+-   Crea una clase llamada **Punto** con sus dos coordenadas X e Y.
+
+-   Añade un **método constructor** para crear puntos fácilmente. Si no se recibe alguna coordenada, su valor será cero.
+
+-   Sobreescribe el **método string**, para que al imprimir por pantalla un punto aparezca en formato (X,Y)
+
+-   Añade un **método llamado cuadrante** que indique a qué cuadrante pertenece el punto, teniendo en cuenta que si X == 0 e Y != 0 se sitúa sobre el eje Y, si X != 0 e Y == 0 se sitúa sobre el eje X y si X == 0 e Y == 0 está sobre el origen.
+
+![Cuadrante de un punto](https://cormat.files.wordpress.com/2010/09/imagen1.png)
+
+-   Añade un **método llamado vector**, que tome otro punto y calcule el vector resultante entre los dos puntos.
+
+![Vector a partir de dos puntos](https://www.matesfacil.com/BAC/geometria2D/puntos/t2.png)
+
+### Ejercicio 8.2
+
+Quieres desarrollar un sistema de notificaciones de recordatorios. En mencionado sistema se requiere que el programador en cuestión tenga contemplado cumplir con los siguientes requisitos:
+
+**Fase CRUD del sistema**
+
+- **Opción 1.** Crear recordatorios: Solicitando su nombre, hora, fecha, y las tareas a realizar a partir de ese recordatorio.
+- 
+- **Opción 2.** Eliminar recordatorios manual: Eliminando de la lista de recordatorios un recordatorio seleccionado.
+- 
+- **Opción 3.** Actualizar recordatorios: con la opción de modificar el nombre, hora, fecha, agregar o eliminar las tareas que están contenidas en ese recordatorio.
+- 
+- **Opción 4.** Ver lista de recordatorios: Mostrando por pantalla de forma ordenada cada uno de los recordatorios con su nombre, hora, fecha y las tareas que están contenidas en ese recordatorio.
+
+
+## Proyecto
+
+[Enunciado](https://docs.google.com/document/d/1B3DFOg-QrzZ5nTa6zQV9i4wDWFxKlcOwEl9bkdruUPQ/edit?usp=sharing)
+
+## JSON
+
+**JSON** es una sintaxis para almacenar e intercambiar datos, es **texto**.
+
+Python tiene un paquete integrado llamado **json**, que se puede usar para trabajar con datos JSON.
+
+```python
+import json
+```
+
+Podremos usar un JSON en Python mediante: **json.loads()**.
+
+```python
+import json
+
+jsonData =  '{ "nombre":"Isamar", "edad":30, "ciudad":"Caracas"}' # JSON
+
+estructura = json.loads(jsonData) # Estructura de Datos
+
+print(estructura["ciudad"]) # Caracas
+```
+
+Tambien podemos pasar de un **diccionario** a un JSON usando **json.dumps()**:
+
+```python
+import json
+
+diccionario =  { "nombre":"Isamar", "edad":30, "ciudad":"Caracas"} # Diccionario
+
+jsonGenerado = json.dumps(diccionario) # JSON
+
+print(jsonGenerado)
+```
+
+[Python JSON](https://docs.google.com/document/d/1B3DFOg-QrzZ5nTa6zQV9i4wDWFxKlcOwEl9bkdruUPQ/edit?usp=sharing)
+
+
+## Repaso APIs
+
+Consultar la **grabacion** de la preparaduria.
+
+## Algoritmos de Ordenamiento
+
+Los **métodos de ordenamiento** son algoritmos que realizan la operación de arreglar los **elementos** de una **estructura** en algún orden secuencial de acuerdo a un **criterio de ordenamiento**. 
+
+El ordenamiento se realiza en base a un valor del elemento. El ordenamiento puede estar dado de forma **iterativa** o **recursiva** según la naturaleza y forma de ejecución del mismo.
+
+### Método de Ordenamiento de la Burbuja (BubbleSort)
+
+El **Ordenamiento de Burbuja (BubbleSort)** es un algoritmo de ordenamiento simple. El mismo *funciona revisando cada elemento de la estructura a ordenar con el que le sigue, cambiándolos de posición si están en un orden incorrecto* (n>n+1). Es necesario repetir este proceso varias veces hasta que no se necesiten más cambios, lo que significara que la estructura quedó ordenada. 
+
+Es el algoritmos de ordenamiento **mas sencillo** pero tambien es el **menos eficiente**.
+
+Dado que estamos realizando N recorridos por cada dato y son N datos, entonces podemos decir que la complejidad del algoritmo es **O(n^2)**. Recordando que cuando hablamos de complejidad tomamos el **peor** de los casos posibles.
+
+Este algoritmo de clasificación simple itera sobre la lista de datos, comparando elementos en pares hasta que los elementos más grandes **burbujean** hasta el final de la lista y los más pequeños permanecen al principio.
+
+Comienza comparando los dos primeros elementos de la lista, si el primer elemento es mayor que el segundo, los intercambiamos, si no, se quedan como están. Luego pasamos al siguiente par de elementos, los comparamos e intercambiamos si fuera necesario. 
+
+```python
+def bubbleSort(lista):
+  intercambiados = True # Es verdadero para entrar en el While
+  while intercambiados:
+    intercambiados = False
+    for i in range(len(lista) - 1):
+      if(lista[i] > lista[i + 1]):
+        # Guardamos cada elemento en una variable
+        elemento1 = lista[i]
+        elemento2 = lista[i + 1]
+        # Intercambiamos los elementos de lugar
+        lista[i] = elemento2
+        lista[i + 1] = elemento1
+        # Indicamos que ocurrio un intercambio
+        intercambiados = True
+
+listaDeNumeros = [8,5,3,1,4,7,9]
+listaDeLetras = ['f','e','d','c','b','a']
+bubbleSort(listaDeNumeros)
+bubbleSort(listaDeLetras)
+print(listaDeNumeros) # [1, 3, 4, 5, 7, 8, 9]
+print(listaDeLetras) # ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+![BubbleSort](https://github.com/gbaudino/MetodosDeOrdenamiento/raw/master/images/bubble-sort.gif)
+[Codigo ASCII](https://elcodigoascii.com.ar/)
+
+### Método de Ordenamiento de Selección (SelectionSort)
+El **método de ordenamiento por selección** consiste en *buscar el menor entre todos los elementos no ordenados y colocarlo al principio*, luego se debe repetir lo mismo con los restantes (no se tienen en cuenta los ya ordenados).
+
+Este algoritmo separa la lista en dos partes, **ordenada** y **no ordenada**. Continuamente **elimina** el elemento más pequeño de la parte sin ordenar y lo agrega a la parte ordenada.
+
+Lo que realmente realiza este algoritmo es tratar la parte izquierda de la lista como la parte ordenada buscando en toda la lista el elemento más pequeño y poniéndolo el primero. Después, sabiendo que ya tenemos el elemento más pequeño el primero, buscamos en toda la lista el elemento más pequeño de los restantes sin ordenar y lo intercambiamos con el siguiente ordenado y así hasta acabar con la lista.
+
+
+En el peor caso su complejidad seria O(n^2)
+
+```python
+def selectionSort(lista):
+  # i sera cada posicion de la lista
+  for i in range(len(lista)):
+    # Indicamos que el elemento mas pequeño sera i
+    posicionMenor = i
+    # Recorremos desde el siguiente elemento a lista[i] buscando el elemento mas pequeño
+    for j in range(i + 1, len(lista)):
+      if(lista[j] < lista[posicionMenor]):
+        posicionMenor = j
+    elementoMenor = lista[posicionMenor]
+    elementoActual = lista[i]
+    lista[i] = elementoMenor 
+    lista[posicionMenor] = elementoActual
+ 
+
+listaDeNumeros = [8,5,2,6,9,3,1,4,0,7]
+listaDeLetras = ['f','e','d','c','b','a']
+selectionSort(listaDeNumeros)
+selectionSort(listaDeLetras)
+print(listaDeNumeros) # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(listaDeLetras) # ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+![SelectionSort](https://github.com/gbaudino/MetodosDeOrdenamiento/raw/master/images/selection-sort-animation.gif)
+
+### Método de Ordenamiento de Inserción (InsertionSort)
+
+El **método de ordenamiento de inserción** actua recorriendo la lista a ordenar, tomando el elemento actual e insertándolo donde debería comparandoló entre los que ya ha recorrido.
+
+Este algoritmo, al igual que el **SelectionSort**, separa la lista en dos partes, **ordenadas** y **no ordenadas**. También suponemos que el primer elemento está ordenado, luego pasamos al siguiente elemento que lo vamos a llamar X, comparamos X con el primero, si es mayor, se queda como está pero si es más pequeño, copiamos el primer elemento en la segunda posición e insertamos X como primero.
+
+Cuantos más elementos tengamos ordenados, menos elementos tendremos que examinar. En el peor caso con la lista ordenada con el criterio contrario se obtiene una complejidad temporal cuadrática, del orden de **O(N^2/2)** con una lista de N elementos.
+
+```python
+def insertionSort(lista):
+  # Comenzamos por el segundo elemento ya que asumimos que el primero es el mas pequeño
+  # i sera cada posicion de la lista
+  for i in range(1, len(lista)):
+    # Tomamos el elemento lista[i] como el elemento a insertar
+    elementoAInsertar = lista[i]
+    # Guardamos la posicion del elemento anterior
+    posicionElementoAnterior = i - 1
+    # Movemos los mayores al elemento a insertar a la derecha
+    while posicionElementoAnterior >= 0 and lista[posicionElementoAnterior] > elementoAInsertar:
+      lista[posicionElementoAnterior + 1] = lista[posicionElementoAnterior]
+      posicionElementoAnterior -= 1
+    # Insertamos el elemnto a insertar
+    lista[posicionElementoAnterior + 1] = elementoAInsertar
+ 
+
+listaDeNumeros = [6,5,3,1,8,7,2,4]
+listaDeLetras = ['f','e','d','c','b','a']
+insertionSort(listaDeNumeros)
+insertionSort(listaDeLetras)
+print(listaDeNumeros) # [1, 2, 3, 4, 5, 6, 7, 8]
+print(listaDeLetras) # ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+![InsertionSort](https://github.com/gbaudino/MetodosDeOrdenamiento/raw/master/images/insertion-sort-example.gif)
+
+### Método de Ordenamiento por mezcla (MergeSort)
+
+El **método de ordenamiento por mezcla** tiene un funcionamiento muy particular, primero debemos saber que si la longitud de la lista es 0 o 1 ya está ordenada, En otro caso: el algoritmo deberá dividir la lista desordenada en dos sublistas de aproximadamente la mitad del tamaño, luego ordenará cada sublista recursivamente aplicando el ordenamiento por mezcla y por ultimo mezcla las dos sublistas en una sola lista ordenada.
+
+Este algoritmo comienza **dividiendo la lista en dos**, luego esas dos mitades en 4 y así sucesivamente hasta que tengamos listas de un elemento de longitud. Después, estos elementos se vuelven a unir en orden. Primero fusionaremos los elementos individuales en pares de nuevo ordenándolos entre sí, luego seguiremos ordenándolos en grupos hasta que tengamos una sola **lista ordenada**.
+
+En el peor caso su complejidad es **O(nlog(n))**.
+
+```python
+def mergeSort(lista):
+  # Si la lista tiene 1 o ningun elemento, se retorna
+  if (len(lista) <= 1):
+    return lista
+  posicionMedio = len(lista) // 2 # Posicion en la mitad de la lista
+  # Ordenamos y fusionamos cada mitad
+  listaIzquierda = mergeSort(lista[:posicionMedio])
+  listaDerecha = mergeSort(lista[posicionMedio:])
+  # Fusionamos las listas ordenadas en un nueva ordenada
+  return merge(listaIzquierda, listaDerecha)
+
+def merge(listaIzquierda, listaDerecha):
+    # Creamos una lista vacia
+    listaOrdenada = []
+    # Inicializamos en el primer elemento de cada lista
+    posicionIzquierda = posicionDerecha = 0
+    # Guardamos el tamaño de cada lista
+    if(listaIzquierda == None):
+        listaIzquierda = []
+    if(listaDerecha == None):
+        listaDerecha = []
+    tamanioIzquierda = len(listaIzquierda)
+    tamanioDerecha = len(listaDerecha)
+    for i in range(tamanioIzquierda + tamanioDerecha):
+        if(posicionIzquierda < tamanioIzquierda and posicionDerecha < tamanioDerecha):
+            # Comprobamos el menor de ambas listas, si es el de la izquierda se añade a la lista ordenada
+            if (listaIzquierda[posicionIzquierda] <= listaDerecha[posicionDerecha]):
+                listaOrdenada.append(listaIzquierda[posicionIzquierda])
+                # Aumentamos la posicion izquierda
+                posicionIzquierda += 1
+            # Si el menor es el de la derecha, se añade a la lista ordenada
+            else:
+                listaOrdenada.append(listaDerecha[posicionDerecha])
+                # Aumentamos la posicion derecha
+                posicionDerecha += 1
+        # Si llegamos al final de la lista izquierda, entonces agregamos los elementos de la lista derecha
+        elif(posicionIzquierda == tamanioIzquierda):
+            listaOrdenada.append(listaDerecha[posicionDerecha])
+            # Aumentamos la posicion derecha
+            posicionDerecha += 1
+        # Si llegamos al final de la lista derecha, entonces agregamos los elementos de la lista izquierda
+        elif(posicionDerecha == tamanioDerecha):
+            listaOrdenada.append(listaIzquierda[posicionIzquierda])
+            # Aumentamos la posicion izquierda
+            posicionIzquierda += 1
+    return listaOrdenada
+
+
+listaDeNumeros = [6,5,3,1,8,7,2,4]
+listaDeLetras = ['f','e','d','c','b','a']
+listaDeNumeros = mergeSort(listaDeNumeros)
+listaDeLetras = mergeSort(listaDeLetras)
+print(listaDeNumeros) # [1, 2, 3, 4, 5, 6, 7, 8]
+print(listaDeLetras) # ['a', 'b', 'c', 'd', 'e', 'f']
+```
+
+![MergeSort)](https://github.com/gbaudino/MetodosDeOrdenamiento/raw/master/images/Merge-sort.gif)
